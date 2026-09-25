@@ -1,87 +1,135 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/01-introduction.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/01-introduction.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/404.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/01-there-and-back-again.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/CODE_OF_CONDUCT.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/02-translating-python-into-rust.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/LICENSE.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/03-where-the-analogy-ends.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/aio.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/04-adding-rust-incrementally.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/citation.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/05-building-with-pyo3.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/images.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/06-crossing-the-boundary.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/index.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/07-practical-guidance.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/01-introduction.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/404.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/404.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/ATTRIBUTION.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/CODE_OF_CONDUCT.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/CODE_OF_CONDUCT.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/LICENSE.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/aio.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/aio.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/citation.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/citation.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/images.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/images.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/index.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/index.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/instructor-notes.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/instructor/01-introduction.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/introduction.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/instructor/01-there-and-back-again.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/key-points.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/instructor/02-translating-python-into-rust.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/keypoints.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/instructor/03-where-the-analogy-ends.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/profiles.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/instructor/04-adding-rust-incrementally.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/reference.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/instructor/05-building-with-pyo3.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor-notes.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/instructor/06-crossing-the-boundary.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/introduction.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/instructor/07-practical-guidance.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/key-points.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/instructor/404.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/keypoints.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/instructor/ATTRIBUTION.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/profiles.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/instructor/CODE_OF_CONDUCT.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/reference.html</loc>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/instructor/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/instructor/aio.html</loc>
+  </url>
+  <url>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/instructor/citation.html</loc>
+  </url>
+  <url>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/instructor/images.html</loc>
+  </url>
+  <url>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/instructor/index.html</loc>
+  </url>
+  <url>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/instructor/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/instructor/introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/instructor/key-points.html</loc>
+  </url>
+  <url>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/instructor/keypoints.html</loc>
+  </url>
+  <url>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/instructor/profiles.html</loc>
+  </url>
+  <url>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/instructor/reference.html</loc>
+  </url>
+  <url>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/key-points.html</loc>
+  </url>
+  <url>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/keypoints.html</loc>
+  </url>
+  <url>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/profiles.html</loc>
+  </url>
+  <url>
+    <loc>https://ornl-training.github.io/python-to-rust-and-back-again/reference.html</loc>
   </url>
 </urlset>

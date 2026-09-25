@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<title>Lesson Title: Key Points</title>
+<title>From Python to Rust and Back Again: Key Points</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="../assets/themetoggle.js"></script><link rel="stylesheet" type="text/css" href="../assets/styles.css">
 <script src="../assets/scripts.js" type="text/javascript"></script><!-- mathjax --><!-- NOTE: https://docs.mathjax.org/en/latest/output/mathml.html#mathml-support --><!-- Changes from V2 to V4: https://mathjax.github.io/MathJax-demos-web/convert-configuration/convert-configuration.html
@@ -40,7 +40,7 @@
   <div class="container-fluid top-nav-container">
     <div class="col-md-8">
       <div class="large-logo">
-        <img id="incubator-logo" alt="Carpentries Incubator" src="../assets/images/incubator-logo.svg"><span class="badge text-bg-danger">
+        <img id="incubator-logo" alt="A Carpentries Incubator lesson about combining Python and Rust" src="../assets/images/incubator-logo.svg"><span class="badge text-bg-danger">
           <abbr title="This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught.">
             <a href="https://docs.carpentries.org/resources/curriculum/lesson-life-cycle.html" class="external-link alert-link">
               <i aria-hidden="true" class="icon" data-feather="alert-octagon" style="border-radius: 5px"></i>
@@ -96,10 +96,10 @@
       <span class="menu-title">Menu</span>
     </button>
     <div class="nav-logo">
-      <img class="small-logo" alt="Carpentries Incubator" src="../assets/images/incubator-logo-sm.svg">
+      <img class="small-logo" alt="A Carpentries Incubator lesson about combining Python and Rust" src="../assets/images/incubator-logo-sm.svg">
 </div>
     <div class="lesson-title-md">
-      Lesson Title
+      From Python to Rust and Back Again
     </div>
     <div class="search-icon-sm">
       <!-- TODO: do not show until we have search
@@ -110,7 +110,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 <li class="nav-item">
           <span class="lesson-title">
-            Lesson Title
+            From Python to Rust and Back Again
           </span>
         </li>
         <li class="nav-item">
@@ -237,7 +237,79 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="introduction.html">1. Using RMarkdown</a>
+        <a href="01-there-and-back-again.html">1. There and Back Again</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush3">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading3">
+        <a href="02-translating-python-into-rust.html">2. Translating Python into Rust</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush4">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading4">
+        <a href="03-where-the-analogy-ends.html">3. Where the Analogy Ends</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush5">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading5">
+        <a href="04-adding-rust-incrementally.html">4. Adding Rust to Python Incrementally</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush6">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading6">
+        <a href="05-building-with-pyo3.html">5. Building a Python Extension with PyO3</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush7">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading7">
+        <a href="06-crossing-the-boundary.html">6. From Python to Rust and Back Again</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush8">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading8">
+        <a href="07-practical-guidance.html">7. Practical Guidance and Q&amp;A</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -301,17 +373,102 @@
     <main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Key Points</h1>
         
-<section id="introduction"><h2 class="section-heading"><a href="introduction.html">Using RMarkdown</a></h2>
+<section id="01-there-and-back-again"><h2 class="section-heading"><a href="01-there-and-back-again.html">There and Back Again</a></h2>
 <hr class="half-width">
 <ul>
-<li>Use <code>.md</code> files for episodes when you want static
-content</li>
-<li>Use <code>.Rmd</code> files for episodes when you need to generate
-output</li>
-<li>Run <code>sandpaper::check_lesson()</code> to identify any issues
-with your lesson</li>
-<li>Run <code>sandpaper::build_lesson()</code> to preview your lesson
-locally</li>
+<li>Python and Rust are complementary when each has a clearly defined
+role.</li>
+<li>Start from a measured need before considering a rewrite.</li>
+<li>The integration boundary and its maintenance cost are part of the
+design.</li>
+</ul></section><section id="02-translating-python-into-rust"><h2 class="section-heading"><a href="02-translating-python-into-rust.html">Translating Python into Rust</a></h2>
+<hr class="half-width">
+<ul>
+<li>Familiar surface syntax can help us begin reading Rust.</li>
+<li>A Rust block can return its final expression; a semicolon discards
+that expression’s value, while <code>return</code> exits
+explicitly.</li>
+<li>Python quote style does not change its string type; Rust
+distinguishes borrowed <code>&amp;str</code>, owned <code>String</code>,
+and scalar <code>char</code> values.</li>
+<li>Rust closures use <code>|arguments| expression</code> and capture by
+borrow, mutable borrow, or value according to how they use their
+environment.</li>
+<li>Rust makes mutability, data types, absence, and recoverable errors
+explicit.</li>
+<li>The <code>?</code> operator propagates a typed failure; it neither
+handles the failure locally nor causes a panic.</li>
+<li>Rust attributes provide compile-time instructions; Python decorators
+operate on runtime objects as definitions execute.</li>
+<li>A slice such as <code>&amp;[i64]</code> lets a function inspect
+sequential data without taking ownership of it.</li>
+</ul></section><section id="03-where-the-analogy-ends"><h2 class="section-heading"><a href="03-where-the-analogy-ends.html">Where the Analogy Ends</a></h2>
+<hr class="half-width">
+<ul>
+<li>Ownership determines who is responsible for a value and when it is
+released.</li>
+<li>Borrowing provides temporary access without transferring
+ownership.</li>
+<li>Lifetimes let the compiler verify relationships between
+references.</li>
+<li>Enums, traits, and concurrency checks are central Rust design
+tools.</li>
+<li>Prototypes may defer decisions, provided their shortcuts remain
+visible and are reviewed before production.</li>
+</ul></section><section id="04-adding-rust-incrementally"><h2 class="section-heading"><a href="04-adding-rust-incrementally.html">Adding Rust to Python Incrementally</a></h2>
+<hr class="half-width">
+<ul>
+<li>Migrate one well-tested, high-value component at a time.</li>
+<li>Minimize language crossings and data conversion.</li>
+<li>Keep the public Python API separate from the native
+implementation.</li>
+<li>Leaving a component in Python is a valid engineering outcome.</li>
+</ul></section><section id="05-building-with-pyo3"><h2 class="section-heading"><a href="05-building-with-pyo3.html">Building a Python Extension with PyO3</a></h2>
+<hr class="half-width">
+<ul>
+<li>Pixi makes the workshop toolchain reproducible; Cargo and Maturin
+build the native Python package.</li>
+<li>PyO3 exposes selected ACORN behavior without exposing the whole Rust
+crate.</li>
+<li>Distribution, import, and nested-module names are separate
+contracts.</li>
+<li>A build crosses distinct layers; diagnose the earliest layer that
+fails.</li>
+<li>Use a <code>#[pyclass]</code> when validated state and related
+behavior must persist across Python calls.</li>
+<li>The first working boundary is deliberately small: one string in and
+one boolean out.</li>
+</ul></section><section id="06-crossing-the-boundary"><h2 class="section-heading"><a href="06-crossing-the-boundary.html">From Python to Rust and Back Again</a></h2>
+<hr class="half-width">
+<ul>
+<li>Binding signatures reveal whether values are borrowed, owned,
+converted, or stored in Rust-backed Python objects.</li>
+<li>Expected Rust failures should become intentional Python
+exceptions.</li>
+<li>Layered tests make domain, binding, and packaging failures easier to
+locate.</li>
+<li>Property tests generate and shrink examples for invariants, round
+trips, and comparisons between the Python and Rust implementations.</li>
+<li>Test the real <code>acorn.schema</code> import paths on every
+supported Python version.</li>
+<li>A clean wheel smoke test catches packaging failures a development
+import can miss.</li>
+</ul></section><section id="07-practical-guidance"><h2 class="section-heading"><a href="07-practical-guidance.html">Practical Guidance and Q&amp;A</a></h2>
+<hr class="half-width">
+<ul>
+<li>Production readiness includes packaging, observability, support, and
+team skills.</li>
+<li>Prototype shortcuts are useful when they are explicit and reviewed
+before release.</li>
+<li>Compiler checks reduce some testing burden; they do not replace
+behavioral and integration tests.</li>
+<li>Property testing explores broad input spaces; Miri and formal
+verification answer narrower questions with different guarantees and
+constraints.</li>
+<li>Use the integrated package for benchmarks.</li>
+<li>Incremental adoption should remain reversible until evidence
+supports it.</li>
+<li>The goal is a better Python project.</li>
 </ul></section>
 </div>
     </main>
@@ -325,14 +482,14 @@ locally</li>
         <p>This lesson is subject to the <a href="CODE_OF_CONDUCT.html">Code of Conduct</a></p>
         <p>
 
-        <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/README.md" class="external-link">Edit on GitHub</a>
+        <a href="https://github.com/ornl-training/python-to-rust-and-back-again/edit/main/README.md" class="external-link">Edit on GitHub</a>
 
 	
-        | <a href="https://github.com/carpentries/workbench-template-rmd/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
-        | <a href="https://github.com/carpentries/workbench-template-rmd/" class="external-link">Source</a></p>
+        | <a href="https://github.com/ornl-training/python-to-rust-and-back-again/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
+        | <a href="https://github.com/ornl-training/python-to-rust-and-back-again/" class="external-link">Source</a></p>
         <p>
         <a href="../citation.html">Cite</a>
-        | <a href="mailto:team@carpentries.org">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
+        | <a href="mailto:wohlgemuthjh@ornl.gov">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
 		</div>
 		<div class="col-md-6">
 
@@ -352,18 +509,18 @@ locally</li>
     {
   "@context": "https://schema.org",
   "@type": "LearningResource",
-  "@id": "https://carpentries.github.io/workbench-template-rmd/instructor/key-points.html",
+  "@id": "https://ornl-training.github.io/python-to-rust-and-back-again/instructor/key-points.html",
   "inLanguage": "en",
   "dct:conformsTo": "https://bioschemas.org/profiles/LearningResource/1.0-RELEASE",
   "description": "A Carpentries Lesson teaching foundational data and coding skills to researchers worldwide",
-  "keywords": "software, data, lesson, The Carpentries",
+  "keywords": "Python, Rust, PyO3, Maturin, Pixi, acorn-py, ACORN, extension modules, interoperability, performance, The Carpentries",
   "name": "Key Points",
   "creativeWorkStatus": "active",
-  "url": "https://carpentries.github.io/workbench-template-rmd/instructor/key-points.html",
-  "identifier": "https://carpentries.github.io/workbench-template-rmd/instructor/key-points.html",
+  "url": "https://ornl-training.github.io/python-to-rust-and-back-again/instructor/key-points.html",
+  "identifier": "https://ornl-training.github.io/python-to-rust-and-back-again/instructor/key-points.html",
   "dateCreated": "2026-09-20",
-  "dateModified": "2026-09-22",
-  "datePublished": "2026-09-22"
+  "dateModified": "2026-09-25",
+  "datePublished": "2026-09-25"
 }
 
   </script><script>

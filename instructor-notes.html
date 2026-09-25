@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<title>Lesson Title: Instructor Notes</title>
+<title>From Python to Rust and Back Again: Instructor Notes</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="assets/themetoggle.js"></script><link rel="stylesheet" type="text/css" href="assets/styles.css">
 <script src="assets/scripts.js" type="text/javascript"></script><!-- mathjax --><!-- NOTE: https://docs.mathjax.org/en/latest/output/mathml.html#mathml-support --><!-- Changes from V2 to V4: https://mathjax.github.io/MathJax-demos-web/convert-configuration/convert-configuration.html
@@ -40,7 +40,7 @@
   <div class="container-fluid top-nav-container">
     <div class="col-md-8">
       <div class="large-logo">
-        <img id="incubator-logo" alt="Carpentries Incubator" src="assets/images/incubator-logo.svg"><span class="badge text-bg-danger">
+        <img id="incubator-logo" alt="A Carpentries Incubator lesson about combining Python and Rust" src="assets/images/incubator-logo.svg"><span class="badge text-bg-danger">
           <abbr title="This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught.">
             <a href="https://docs.carpentries.org/resources/curriculum/lesson-life-cycle.html" class="external-link alert-link">
               <i aria-hidden="true" class="icon" data-feather="alert-octagon" style="border-radius: 5px"></i>
@@ -96,10 +96,10 @@
       <span class="menu-title">Menu</span>
     </button>
     <div class="nav-logo">
-      <img class="small-logo" alt="Carpentries Incubator" src="assets/images/incubator-logo-sm.svg">
+      <img class="small-logo" alt="A Carpentries Incubator lesson about combining Python and Rust" src="assets/images/incubator-logo-sm.svg">
 </div>
     <div class="lesson-title-md">
-      Lesson Title
+      From Python to Rust and Back Again
     </div>
     <div class="search-icon-sm">
       <!-- TODO: do not show until we have search
@@ -110,7 +110,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 <li class="nav-item">
           <span class="lesson-title">
-            Lesson Title
+            From Python to Rust and Back Again
           </span>
         </li>
         <li class="nav-item">
@@ -236,7 +236,79 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="introduction.html">1. Using RMarkdown</a>
+        <a href="01-there-and-back-again.html">1. There and Back Again</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush3">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading3">
+        <a href="02-translating-python-into-rust.html">2. Translating Python into Rust</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush4">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading4">
+        <a href="03-where-the-analogy-ends.html">3. Where the Analogy Ends</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush5">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading5">
+        <a href="04-adding-rust-incrementally.html">4. Adding Rust to Python Incrementally</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush6">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading6">
+        <a href="05-building-with-pyo3.html">5. Building a Python Extension with PyO3</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush7">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading7">
+        <a href="06-crossing-the-boundary.html">6. From Python to Rust and Back Again</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush8">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading8">
+        <a href="07-practical-guidance.html">7. Practical Guidance and Q&amp;A</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -300,14 +372,209 @@
         <h1>Instructor Notes</h1>
         
 
-<p>This is a placeholder file. Please add content here.</p>
-<!--
-Place links that you need to refer to multiple times across pages here. Delete
-any links that you are not going to use.
- -->
-
-
-      <section id="aggregate-instructor-notes"></section>
+<section><h2 class="section-heading" id="workshop-shape">Workshop shape<a class="anchor" aria-label="anchor" href="#workshop-shape"></a>
+</h2>
+<hr class="half-width">
+<p>The complete lesson contains 180 minutes of active material: 125
+minutes of instruction and 55 minutes of exercises and discussion.</p>
+<table class="table">
+<thead><tr>
+<th align="left">Episode</th>
+<th align="right">Teaching</th>
+<th align="right">Exercises</th>
+<th align="right">Running total</th>
+</tr></thead>
+<tbody>
+<tr>
+<td align="left">There and Back Again</td>
+<td align="right">10 min</td>
+<td align="right">5 min</td>
+<td align="right">15 min</td>
+</tr>
+<tr>
+<td align="left">Translating Python into Rust</td>
+<td align="right">25 min</td>
+<td align="right">10 min</td>
+<td align="right">50 min</td>
+</tr>
+<tr>
+<td align="left">Where the Analogy Ends</td>
+<td align="right">20 min</td>
+<td align="right">5 min</td>
+<td align="right">75 min</td>
+</tr>
+<tr>
+<td align="left">Adding Rust Incrementally</td>
+<td align="right">15 min</td>
+<td align="right">10 min</td>
+<td align="right">100 min</td>
+</tr>
+<tr>
+<td align="left">Building with PyO3</td>
+<td align="right">20 min</td>
+<td align="right">10 min</td>
+<td align="right">130 min</td>
+</tr>
+<tr>
+<td align="left">From Python to Rust and Back Again</td>
+<td align="right">20 min</td>
+<td align="right">10 min</td>
+<td align="right">160 min</td>
+</tr>
+<tr>
+<td align="left">Practical Guidance and Q&amp;A</td>
+<td align="right">15 min</td>
+<td align="right">5 min</td>
+<td align="right">180 min</td>
+</tr>
+</tbody>
+</table>
+<p>The table describes active workshop time. Schedule breaks in addition
+to the three hours when possible. If the room is booked for exactly
+three hours, take a 10-minute break after Episode 3 and recover that
+time by shortening the Episode 4 seam-ranking report-out and the Episode
+7 tool survey. Keep the hands-on build and boundary-testing exercises
+intact.</p>
+</section><section><h2 class="section-heading" id="three-hour-pacing-checkpoints">Three-hour pacing checkpoints<a class="anchor" aria-label="anchor" href="#three-hour-pacing-checkpoints"></a>
+</h2>
+<hr class="half-width">
+<table class="table">
+<colgroup>
+<col width="50%">
+<col width="50%">
+</colgroup>
+<thead><tr>
+<th align="left">Clock</th>
+<th align="left">Checkpoint</th>
+</tr></thead>
+<tbody>
+<tr>
+<td align="left">0:00</td>
+<td align="left">Open with a concrete decision about whether Rust
+belongs in the project</td>
+</tr>
+<tr>
+<td align="left">0:15</td>
+<td align="left">Begin translating familiar Python constructs</td>
+</tr>
+<tr>
+<td align="left">0:50</td>
+<td align="left">Introduce ownership, borrowing, and scoped
+concurrency</td>
+</tr>
+<tr>
+<td align="left">1:15</td>
+<td align="left">Rank candidate Python-Rust seams</td>
+</tr>
+<tr>
+<td align="left">1:40</td>
+<td align="left">Build and import the first PyO3 function</td>
+</tr>
+<tr>
+<td align="left">2:10</td>
+<td align="left">Exercise conversions, exceptions, and property
+tests</td>
+</tr>
+<tr>
+<td align="left">2:40</td>
+<td align="left">Turn prototype shortcuts into a production plan</td>
+</tr>
+<tr>
+<td align="left">3:00</td>
+<td align="left">Finish with one written next step per learner</td>
+</tr>
+</tbody>
+</table>
+<p>Use the exercises as working time, not as optional pauses. In Episode
+2, ask learners to predict the Rust type before revealing it. In Episode
+3, have pairs state whether each function should borrow, mutate, or own.
+In Episode 4, ask each pair to defend one seam. During Episode 5, let
+the build run and use any failure to practice the diagnostic table. In
+Episode 6, classify failures by exception and test layer, then ask
+learners to state one invariant suitable for a property test. In Episode
+7, have them match a project risk to an assurance tool before showing
+the comparison table. These prompts make the allotted time useful
+without stretching the lecture.</p>
+</section><section><h2 class="section-heading" id="preparation-checklist">Preparation checklist<a class="anchor" aria-label="anchor" href="#preparation-checklist"></a>
+</h2>
+<hr class="half-width">
+<ul>
+<li>Run the learner setup on Windows, macOS, and Linux or recruit
+helpers who can diagnose each platform.</li>
+<li>Clone the current <code>acorn-py</code> reference and run
+<code>make check</code>, <code>make test</code>, and
+<code>make wheel-smoke</code> with its committed Pixi and Cargo
+lockfiles.</li>
+<li>Confirm that the venue can reach Conda Forge, PyPI, crates.io, and
+<code>code.ornl.gov</code>, or pre-cache the locked environments and
+Rust crates.</li>
+<li>Prepare a clean teaching checkout at every checkpoint listed below
+so learners can recover from native build or editing errors.</li>
+<li>Decide whether learners will type each <code>acorn-py</code> binding
+or receive the next checkpoint as a patch.</li>
+<li>Have one realistic benchmark ready; avoid implying Rust is
+automatically faster than idiomatic Python libraries backed by native
+code.</li>
+</ul></section><section><h2 class="section-heading" id="teaching-approach">Teaching approach<a class="anchor" aria-label="anchor" href="#teaching-approach"></a>
+</h2>
+<hr class="half-width">
+<p>The narrative follows a journey out of familiar Python territory and
+back to a Python-facing package. Use the metaphor sparingly alongside
+precise technical language.</p>
+<p>Use comparisons to help learners begin reading Rust, then explicitly
+retire the analogy when teaching ownership. Frame compiler messages as
+feedback about an API’s resource contract. Learners do not need to
+master lifetime syntax to understand why references must remain
+valid.</p>
+<p>During the PyO3 exercise, pair learners when possible. Native
+toolchain failures can consume the session; switch a blocked learner to
+the prepared <code>acorn-py</code> checkpoint after five minutes and
+diagnose the machine during a break.</p>
+<p>Learners are building a representative vertical slice. The reference
+implementation provides evidence for architecture and packaging
+decisions.</p>
+</section><section><h2 class="section-heading" id="live-coding-checkpoints">Live-coding checkpoints<a class="anchor" aria-label="anchor" href="#live-coding-checkpoints"></a>
+</h2>
+<hr class="half-width">
+<p>Keep a clean project at each checkpoint:</p>
+<ol style="list-style-type: decimal">
+<li>Pixi creates the locked Python 3.13 development environment.</li>
+<li>The distribution name <code>acorn-py</code> builds an importable
+module named <code>acorn</code>.</li>
+<li>
+<code>from acorn.schema.validate import is_doi</code> reaches a Rust
+validator.</li>
+<li>A Rust-backed identifier class is registered in
+<code>acorn.schema.pid</code>.</li>
+<li>A fallible Rust operation raises the intended Python
+<code>ValueError</code>.</li>
+<li>The Python 3.10 and 3.13 test environments pass.</li>
+<li>
+<code>wheel-smoke</code> builds, installs, imports, and checks the
+stable-ABI wheel in a clean environment.</li>
+</ol></section><section><h2 class="section-heading" id="discussion-prompts">Discussion prompts<a class="anchor" aria-label="anchor" href="#discussion-prompts"></a>
+</h2>
+<hr class="half-width">
+<ul>
+<li>Which boundary crossings in learners’ projects would copy the most
+data?</li>
+<li>Which public Python behaviors must remain unchanged?</li>
+<li>Which prototype shortcuts are acceptable, and how will the team find
+them before release?</li>
+<li>Who will build wheels and respond to Rust-related failures?</li>
+<li>What evidence would persuade the team to keep or remove the Rust
+component?</li>
+</ul></section><section><h2 class="section-heading" id="content-development-map">Content development map<a class="anchor" aria-label="anchor" href="#content-development-map"></a>
+</h2>
+<hr class="half-width">
+<p>Each episode contains an HTML comment marking a natural expansion
+point. When adding material, preserve the stated learning objectives and
+adjust episode timings. Extend the same <code>acorn-py</code> vertical
+slice across episodes: DOI validation first, then nested modules, a
+persistent-identifier class, error translation, cross-version tests, and
+a wheel. Keep the public import paths and tool versions aligned with the
+completed reference project.</p>
+</section><section id="aggregate-instructor-notes"></section>
 </div>
     </main>
 </div>
@@ -320,14 +587,14 @@ any links that you are not going to use.
         <p>This lesson is subject to the <a href="CODE_OF_CONDUCT.html">Code of Conduct</a></p>
         <p>
 
-        <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/README.md" class="external-link">Edit on GitHub</a>
+        <a href="https://github.com/ornl-training/python-to-rust-and-back-again/edit/main/README.md" class="external-link">Edit on GitHub</a>
 
 	
-        | <a href="https://github.com/carpentries/workbench-template-rmd/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
-        | <a href="https://github.com/carpentries/workbench-template-rmd/" class="external-link">Source</a></p>
+        | <a href="https://github.com/ornl-training/python-to-rust-and-back-again/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
+        | <a href="https://github.com/ornl-training/python-to-rust-and-back-again/" class="external-link">Source</a></p>
         <p>
         <a href="citation.html">Cite</a>
-        | <a href="mailto:team@carpentries.org">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
+        | <a href="mailto:wohlgemuthjh@ornl.gov">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
 		</div>
 		<div class="col-md-6">
 
@@ -347,18 +614,18 @@ any links that you are not going to use.
     {
   "@context": "https://schema.org",
   "@type": "LearningResource",
-  "@id": "https://carpentries.github.io/workbench-template-rmd/instructor-notes.html",
+  "@id": "https://ornl-training.github.io/python-to-rust-and-back-again/instructor-notes.html",
   "inLanguage": "en",
   "dct:conformsTo": "https://bioschemas.org/profiles/LearningResource/1.0-RELEASE",
   "description": "A Carpentries Lesson teaching foundational data and coding skills to researchers worldwide",
-  "keywords": "software, data, lesson, The Carpentries",
+  "keywords": "Python, Rust, PyO3, Maturin, Pixi, acorn-py, ACORN, extension modules, interoperability, performance, The Carpentries",
   "name": "Instructor Notes",
   "creativeWorkStatus": "active",
-  "url": "https://carpentries.github.io/workbench-template-rmd/instructor-notes.html",
-  "identifier": "https://carpentries.github.io/workbench-template-rmd/instructor-notes.html",
+  "url": "https://ornl-training.github.io/python-to-rust-and-back-again/instructor-notes.html",
+  "identifier": "https://ornl-training.github.io/python-to-rust-and-back-again/instructor-notes.html",
   "dateCreated": "2026-09-20",
-  "dateModified": "2026-09-22",
-  "datePublished": "2026-09-22"
+  "dateModified": "2026-09-25",
+  "datePublished": "2026-09-25"
 }
 
   </script><script>
