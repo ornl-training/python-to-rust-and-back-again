@@ -1,0 +1,18 @@
+/* Ringbearer display font */
+@font-face {
+  font-family: "Ringbearer";
+  src:
+    local("Ringbearer Medium"),
+    local("Ringbearer"),
+    url("fonts/RINGM___.TTF") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.lesson-title,
+.lesson-title-md {
+  font-family: "Ringbearer", "Mulish", sans-serif;
+  font-kerning: normal;
+  font-weight: 500;
+}

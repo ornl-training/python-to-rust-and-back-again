@@ -1,74 +1,82 @@
-# The Carpentries Workbench Template R Markdown Lesson
+# From Python to Rust and Back Again
 
-This lesson is a template lesson that uses [The Carpentries Workbench][workbench].
+Workshop materials for Python developers who want to introduce Rust at a
+carefully chosen boundary without rewriting an entire codebase.
 
-## Note about lesson life cycle stage
-Although the `config.yaml` states the life cycle stage as pre-alpha, **the template is stable and ready to use**. The life cycle stage is preset to `"pre-alpha"` as this setting is appropriate for new lessons initialised using the template.
+The lesson maps familiar Python concepts to Rust, explains where the analogy
+ends, and incrementally builds a teaching-sized version of [`acorn-py`][acorn-py]
+with PyO3 and Maturin. It is currently in **pre-alpha**: the structure and
+teaching path are ready for content development and review.
 
-## Create a new repository from this template
+## Lesson outline
 
-To use this template to start a new lesson repository, 
-make sure you're logged into Github.   
-Visit https://github.com/carpentries/workbench-template-rmd/generate
-and follow the instructions.
-Checking the 'Include all branches' option will save some time waiting for the first website build
-when your new repository is initialised.
+1. There and Back Again
+2. Translating Python into Rust
+3. Where the analogy ends
+4. Adding Rust to Python incrementally
+5. Building a Python extension with PyO3
+6. From Python to Rust and back again
+7. Practical guidance and Q&A
 
-If you have any questions, contact [@tobyhodges](https://github.com/tobyhodges)
+Learners should begin with the [setup instructions](learners/setup.md). Lesson
+authors can use the [instructor notes](instructors/instructor-notes.md) for the
+teaching schedule and content-development map.
 
-## Configure a new lesson
+## Build the site locally
 
-Follow the steps below to
-complete the initial configuration of a new lesson repository built from this template:
+This repository uses [The Carpentries Workbench][workbench]. With R and the
+Workbench packages installed, start the hot-reload development server with:
 
-1. **Make sure GitHub Pages is activated:**
-   navigate to _Settings_,
-   select _Pages_ from the left sidebar,
-   and make sure that `gh-pages` is selected as the branch to build from.
-   If no `gh-pages` branch is available, check _Actions_ to see if the first
-   website build workflows are still running.
-   The branch should become available when those have completed.
-1. **Adjust the `config.yaml` file:**
-   this file contains global parameters for your lesson site.
-   Individual fields within the file are documented with comments (beginning with `#`)
-   At minimum, you should adjust all the fields marked 'FIXME':
-   - `title`
-   - `created`
-   - `keywords`
-   - `life_cycle` (the default, _pre-alpha_, is the appropriate for brand new lessons)
-   - `contact`
-1. **Annotate the repository** with site URL and topic tags:
-   navigate back to the repository landing page and
-   click on the gear wheel/cog icon (similar to ⚙️) 
-   at the top-right of the _About_ box.
-   Check the "Use your GitHub Pages website" option,
-   and [add some keywords and other annotations to describe your lesson](https://cdh.carpentries.org/the-carpentries-incubator.html#topic-tags)
-   in the _Topics_ field.
-   At minimum, these should include:
-   - `lesson`
-   - the life cycle of the lesson (e.g. `pre-alpha`)
-   - the human language the lesson is written in (e.g. `deutsch`)
-1. **Adjust the name of the `.Rproj` file.**
-   It is simplest to make this match the name of the repository.
-1. **Adjust the 
-   `CODE_OF_CONDUCT.md`, `CONTRIBUTING.md`, and `LICENSE.md` files**
-   as appropriate for your project.
-   -  `CODE_OF_CONDUCT.md`: 
-      if you are using this template for a project outside The Carpentries,
-      you should adjust this file to describe 
-      who should be contacted with Code of Conduct reports,
-      and how those reports will be handled.
-   -  `CONTRIBUTING.md`:
-      depending on the current state and maturity of your project,
-      the contents of the template Contributing Guide may not be appropriate.
-      You should adjust the file to help guide contributors on how best
-      to get involved and make an impact on your lesson.
-   -  `LICENSE.md`:
-      in line with the terms of the CC-BY license,
-      you should ensure that the copyright information 
-      provided in the license file is accurate for your project.
-1. **Update this README with 
-   [relevant information about your lesson](https://carpentries.github.io/lesson-development-training/collaborating-newcomers.html#readme)**
-   and delete this section.
+```bash
+make dev
+```
+
+The preview is available at <http://127.0.0.1:3435> and updates when lesson
+files are saved. Override the interface or port when needed:
+
+```bash
+make dev HOST=0.0.0.0 PORT=8080
+```
+
+Other common tasks are:
+
+```bash
+make help     # List every target.
+make doctor   # Check R, the Workbench packages, and Pandoc.
+make check    # Validate the lesson.
+make build    # Incrementally build the static site.
+make rebuild  # Rebuild without cached output.
+make all      # Validate, then build.
+```
+
+Run `make setup` on a new machine to install R and Pandoc through Homebrew when
+needed, install the Workbench, and provision the lesson dependencies. On Linux
+or Windows, install R and Pandoc with the platform's package manager first; the
+target will print the relevant installation links when Homebrew is unavailable.
+An installed but unlinked Homebrew R formula is detected automatically, so
+`brew link r` is not required. R packages are installed into the ignored,
+project-local `.r-library/` directory, leaving Homebrew's global library
+unchanged. The same Workbench operations can be invoked directly from R:
+
+```r
+library(sandpaper)
+build_lesson()
+serve()
+```
+
+## Ringbearer display font
+
+This private workshop bundles [Ringbearer][ringbearer] for its title and main
+headings. `make build` and `make rebuild` copy the font into the generated site;
+Mulish remains the fallback. The font's terms limit it to private use, so obtain
+permission from the author before publishing or distributing the workshop.
+
+## Contributing
+
+Corrections, learner feedback, exercises, and platform-specific setup reports
+are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) before opening an issue or
+pull request.
 
 [workbench]: https://carpentries.github.io/sandpaper-docs/
+[acorn-py]: https://code.ornl.gov/research-enablement/acorn-py
+[ringbearer]: https://www.dafont.com/ringbearer.font

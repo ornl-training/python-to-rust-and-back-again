@@ -3,6 +3,9 @@ episodes/*html
 site/*
 !site/README.md
 
+# Local R packages installed by `make setup`
+.r-library/
+
 # History files
 .Rhistory
 .Rapp.history

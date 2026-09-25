@@ -2,46 +2,35 @@
 # Values for this lesson.
 #------------------------------------------------------------
 
-# Which carpentry is this (dc, hpcc, lc, swc, or cp)?
-# dc: Data Carpentry
-# hpcc: HPC Carpentry
-# lc: Library Carpentry
-# swc: Software Carpentry
-# cp: Carpentries (to use for instructor training for instance)
-# incubator: The Carpentries Incubator
-# Note that you can also use a custom carpentry type. For more info,
-# see the documentation: https://carpentries.github.io/sandpaper-docs/editing.html
 carpentry: 'incubator'
 
-# Custom carpentry description
-# This will be used as the alt text for the logo
-# carpentry_description: "Custom Carpentry"
+carpentry_description: 'A Carpentries Incubator lesson about combining Python and Rust'
 
 # Overall title for pages.
-title: 'Lesson Title' # FIXME
+title: 'From Python to Rust and Back Again'
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
-created: ~ # FIXME: ( ~ means empty, replace with date formatted as above)
+created: 2026-09-20
 
 # Comma-separated list of keywords for the lesson
-keywords: 'software, data, lesson, The Carpentries' # FIXME
+keywords: 'Python, Rust, PyO3, Maturin, Pixi, acorn-py, ACORN, extension modules, interoperability, performance, The Carpentries'
 
 # Life cycle stage of the lesson
 # refer to <https://docs.carpentries.org/resources/curriculum/lesson-life-cycle.html> for details
 # possible values: pre-alpha, alpha, beta, stable, retired
-life_cycle: 'pre-alpha' # FIXME
+life_cycle: 'pre-alpha'
 
 # License of the lesson
 license: 'CC-BY 4.0'
 
 # Link to the source repository for this lesson
-source: 'https://github.com/carpentries/workbench-template-rmd' # FIXME
+source: 'https://github.com/ornl-training/python-to-rust-and-back-again'
 
 # Default branch of your lesson
 branch: 'main'
 
 # Who to contact if there are any issues
-contact: 'team@carpentries.org' # FIXME
+contact: 'wohlgemuthjh@ornl.gov'
 
 # Navigation ------------------------------------------------
 #
@@ -66,21 +55,29 @@ contact: 'team@carpentries.org' # FIXME
 # - another-learner.md
 
 # Order of episodes in your lesson
-episodes: 
-- introduction.Rmd
+episodes:
+- 01-there-and-back-again.md
+- 02-translating-python-into-rust.md
+- 03-where-the-analogy-ends.md
+- 04-adding-rust-incrementally.md
+- 05-building-with-pyo3.md
+- 06-crossing-the-boundary.md
+- 07-practical-guidance.md
 
 # Information for Learners
-learners: 
+learners:
+- setup.md
+- reference.md
 
 # Information for Instructors
-instructors: 
+instructors:
+- instructor-notes.md
 
 # Learner Profiles
-profiles: 
+profiles:
+- python-developer.md
 
 # Customisation ---------------------------------------------
 #
 # This space below is where custom yaml items (e.g. pinning
 # sandpaper and varnish versions) should live
-
-

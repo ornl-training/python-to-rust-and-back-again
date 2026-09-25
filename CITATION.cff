@@ -1,22 +1,19 @@
-# This template CITATION.cff file was generated with cffinit.
-# Visit https://bit.ly/cffinit to replace its contents
-# with information about your lesson.
-# Remember to update this file periodically, 
-# ensuring that the author list and other fields remain accurate.
-
 cff-version: 1.2.0
-title: FIXME
+title: From Python to Rust and Back Again
 message: >-
-  Please cite this lesson using the information in this file
-  when you refer to it in publications, and/or if you
-  re-use, adapt, or expand on the content in your own
-  training material.
+  Please cite this lesson when referring to it in publications or reusing,
+  adapting, or expanding its training material.
 type: dataset
 authors:
-  - given-names: FIXME
-    family-names: FIXME
+  - given-names: Jason
+    family-names: Wohlgemuth
+    orcid: https://orcid.org/0000-0002-2057-9115
 abstract: >-
-  FIXME Replace this with a short abstract describing the
-  lesson, e.g. its target audience and main intended
-  learning objectives.
+  A workshop for Python developers learning how to introduce Rust into an
+  existing project incrementally. The lesson maps familiar Python concepts to
+  Rust, introduces ownership and compile-time guarantees, and builds a native
+  Python extension with PyO3 and Maturin.
 license: CC-BY-4.0
+repository-code: https://github.com/ornl-training/python-to-rust-and-back-again
+version: 0.1.0
+date-released: 2026-09-20

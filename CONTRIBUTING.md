@@ -1,96 +1,69 @@
-## Contributing
+# Contributing
 
-[The Carpentries][cp-site] ([Data Carpentry][dc-site], [HPC Carpentry][hpcc-site], [Library Carpentry][lc-site], and [Software Carpentry][swc-site]) are open source projects, and we welcome contributions of all kinds: 
-new lessons, fixes to existing material, bug reports, and reviews of proposed changes are all welcome.
+Contributions that make **From Python to Rust and Back Again** more accurate,
+teachable, and approachable are welcome. Useful contributions include:
 
-### Contributor Agreement
+- reports from learners who tried the setup on Windows, macOS, or Linux;
+- corrections to Python, Rust, PyO3, or Maturin examples;
+- exercises and explanations aligned with an existing learning objective;
+- instructor notes based on a real delivery; and
+- accessibility, wording, or navigation improvements.
 
-By contributing, you agree that we may redistribute your work under [our license](LICENSE.md).
-In exchange, we will address your issues and/or assess your change proposal as promptly as we can, and help you become a member of our community.
-Everyone involved in [The Carpentries][cp-site] agrees to abide by our [code of conduct](CODE_OF_CONDUCT.md).
+Everyone participating in this project must follow the
+[Code of Conduct](CODE_OF_CONDUCT.md). By contributing, you agree that your
+work may be redistributed under the licenses in [LICENSE.md](LICENSE.md).
 
-### How to Contribute
+## Report a problem or suggest an improvement
 
-The easiest way to get started is to file an issue to tell us about a spelling mistake, some awkward wording, or a factual error.
-This is a good way to introduce yourself and to meet some of our community members.
+Open an issue in the [lesson repository][repository]. Include the page or
+episode, what you expected, what happened, and enough version information to
+reproduce software or build problems. Learner reports are especially valuable;
+please do not wait until you know the solution.
 
-1. If you do not have a [GitHub][github] account, you can [send us comments by email][contact]. 
-   However, we will be able to respond more quickly if you use one of the other methods described below.
+For security-sensitive or private conduct matters, use the reporting route in
+the [Code of Conduct](CODE_OF_CONDUCT.md) instead of a public issue.
 
-2. If you have a [GitHub][github] account, or are willing to [create one][github-join], but do not know how to use Git, you can report problems or suggest improvements by visiting the GitHub repository for this project and creating an issue. 
-   This allows us to assign the item to someone and to respond to it in a threaded discussion.
+## Propose a change
 
-3. If you are comfortable with Git, and would like to add or change material, you can submit a pull request (PR). 
-   Instructions for doing this are [included below](#using-github). 
-   For inspiration about changes that need to be made, check out the [list of open issues][issues] across the Carpentries.
+1. Create a focused branch from `main`.
+2. Edit the Markdown source rather than files under `site/`.
+3. Keep additions within the scope of the episode's learning objectives. If new
+   material needs teaching time, note what should be shortened or removed.
+4. Run the local checks.
+5. Open a pull request describing the learner need and how the change was
+   verified.
 
-If you want to build the website locally, please refer to [The Workbench documentation][template-doc].
+The project follows the [Carpentries generative AI contributions policy][ai].
+Disclose generated material as required by that policy and verify technical
+claims and code before submitting them.
 
-All contributions should be made in accordance with our [Generative AI Contributions Policy][ai-policy].
+## Local checks
 
-### Where to Contribute
+With R and The Carpentries Workbench installed, run:
 
-1. If you wish to change this lesson, add issues and pull requests here.
-2. If you wish to change the template used for lesson websites, please refer to [The Workbench documentation][template-doc].
+```bash
+make check
+make build
+```
 
+Use `make dev` while editing to start a preview that rebuilds automatically.
+Run `make help` for dependency setup, clean rebuild, and diagnostic targets.
 
-### What to Contribute
+For changes to [`acorn-py`][acorn-py] code excerpts, verify them in a checkout
+of the reference project and run its contributor checks:
 
-There are many ways to contribute, from writing new exercises and improving existing ones to updating or filling in the documentation and submitting [bug reports][issues] about things that do not work, are not clear, or are missing.
-If you are looking for ideas, please visit the Issues tab of the source repository, or the issues for [Data Carpentry][dc-issues], [HPC Carpentry][hpcc-issues], [Library Carpentry][lc-issues], and [Software Carpentry][swc-issues] projects.
+```bash
+make check
+make test
+make wheel-smoke
+```
 
-Comments on issues and reviews of pull requests are just as welcome: we are smarter together than we are on our own.
-**Reviews from novices and newcomers are particularly valuable**: 
-it's easy for people who have been using these lessons for a while to forget how impenetrable some of this material can be, so fresh eyes are always welcome.
+The reference project uses Pixi to provide Python, Rust, Maturin, and the test
+tools. Keep snippets compatible with its committed `Cargo.lock`, `pixi.lock`,
+and `pyproject.toml` rather than testing against unrelated global toolchains.
 
-### What *Not* to Contribute
+Do not commit generated website files from `site/`.
 
-Our lessons already contain more material than we can cover in a typical workshop, so we are usually *not* looking for more concepts or tools to add to them.
-As a rule, if you want to introduce a new idea, you must (a) estimate how long it will take to teach and (b) explain what you would take out to make room for it.
-The first encourages contributors to be honest about requirements; the second, to think hard about priorities.
-
-We are also not looking for exercises or other material that only run on one platform.
-Our workshops typically contain a mixture of Windows, macOS, and Linux users; in order to be usable, our lessons must run equally well on all three.
-
-### Using GitHub
-
-If you choose to contribute via GitHub, you may want to look at [How to Contribute to an Open Source Project on GitHub][how-contribute].
-In brief, we use [GitHub flow][github-flow] to manage changes:
-
-1. Create a new branch in your desktop copy of this repository for each significant change.
-2. Commit the change in that branch.
-3. Push that branch to your fork of this repository on GitHub.
-4. Submit a pull request from that branch to the upstream repository.
-5. If you receive feedback, make changes on your desktop and push to your branch on GitHub: the pull request will update automatically.
-
-NB: The source files of the published copy of the lesson is usually in the `main` branch.
-
-Each lesson has a team of maintainers who review issues and pull requests or encourage others to do so.
-The maintainers are community volunteers, and have final say over what gets merged into the lesson.
-
-### Other Resources
-
-The Carpentries is a global organisation with volunteers and learners all over the world.
-We share values of inclusivity and a passion for sharing knowledge, teaching and learning. There are several ways to connect with The Carpentries community listed at <https://carpentries.org/connect/> including via social media, slack, newsletters, and email lists. 
-You can also [reach us by email][contact].
-
-[ai-policy]: https://docs.carpentries.org/policies/genai-policy.html
-[contact]: mailto:team@carpentries.org
-[cp-site]: https://carpentries.org/
-[dc-issues]: https://github.com/issues?q=user%3Adatacarpentry
-[dc-lessons]: https://datacarpentry.org/lessons/
-[dc-site]: https://datacarpentry.org/
-[discuss-list]: https://carpentries.topicbox.com/groups/discuss
-[github]: https://github.com
-[github-flow]: https://guides.github.com/introduction/flow/
-[github-join]: https://github.com/join
-[how-contribute]: https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github
-[hpcc-issues]: https://github.com/issues?q=user%3Ahpc-carpentry
-[hpcc-site]: https://hpc-carpentry.org/
-[issues]: https://carpentries.org/help-wanted-issues/
-[lc-issues]: https://github.com/issues?q=user%3ALibraryCarpentry
-[lc-site]: https://librarycarpentry.org/
-[swc-issues]: https://github.com/issues?q=user%3Aswcarpentry
-[swc-lessons]: https://software-carpentry.org/lessons/
-[swc-site]: https://software-carpentry.org/
-[template-doc]: https://carpentries.github.io/workbench/
+[ai]: https://docs.carpentries.org/policies/genai-policy.html
+[acorn-py]: https://code.ornl.gov/research-enablement/acorn-py
+[repository]: https://github.com/ornl-training/python-to-rust-and-back-again
