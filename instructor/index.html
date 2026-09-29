@@ -561,7 +561,7 @@ this page will follow your selection.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-Windows" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-Windows">
+<div id="nav-tabpanel-1-Windows" class="tab-pane show active" aria-labelledby="nav-tab-1-Windows" role="tabpanel">
 <p>Open Windows Terminal and select its PowerShell profile. Run all
 Windows commands in this workshop from PowerShell, not Git Bash.</p>
 <p>Install Git and the Visual Studio C++ build tools with WinGet:</p>
@@ -575,7 +575,7 @@ Windows commands in this workshop from PowerShell, not Git Bash.</p>
 <p>The workshop uses direct <code>pixi</code> commands on Windows, so
 GNU Make is optional.</p>
 </div>
-<div id="nav-tabpanel-1-Linux" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-Linux">
+<div id="nav-tabpanel-1-Linux" class="tab-pane" aria-labelledby="nav-tab-1-Linux" role="tabpanel">
 <p>You need Git, Make, a C toolchain, and Perl. For Debian or
 Ubuntu:</p>
 <div class="codewrapper sourceCode" id="cb3">
@@ -588,7 +588,7 @@ Ubuntu:</p>
 the project’s remaining Linux build dependencies, including
 <code>pkg-config</code>, OpenSSL, and <code>patchelf</code>.</p>
 </div>
-<div id="nav-tabpanel-1-macOS" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-macOS">
+<div id="nav-tabpanel-1-macOS" class="tab-pane" aria-labelledby="nav-tab-1-macOS" role="tabpanel">
 <p>Install the Xcode Command Line Tools if they are not already
 present:</p>
 <div class="codewrapper sourceCode" id="cb4">
@@ -624,7 +624,7 @@ installation instructions</a> for your operating system.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-2" class="tab-content">
-<div id="nav-tabpanel-2-Windows" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-2-Windows">
+<div id="nav-tabpanel-2-Windows" class="tab-pane show active" aria-labelledby="nav-tab-2-Windows" role="tabpanel">
 <p>Run this command from the PowerShell profile in Windows Terminal:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">POWERSHELL<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -632,14 +632,14 @@ installation instructions</a> for your operating system.</p>
 <pre class="sourceCode powershell" tabindex="0"><code class="sourceCode powershell"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a>winget install <span class="op">--</span>id prefix-dev<span class="op">.</span><span class="fu">pixi</span> <span class="op">-</span>e <span class="op">--</span>source winget</span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-2-Linux" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-Linux">
+<div id="nav-tabpanel-2-Linux" class="tab-pane" aria-labelledby="nav-tab-2-Linux" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> https://pixi.sh/install.sh <span class="kw">|</span> <span class="fu">sh</span></span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-2-macOS" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-macOS">
+<div id="nav-tabpanel-2-macOS" class="tab-pane" aria-labelledby="nav-tab-2-macOS" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -725,7 +725,7 @@ several minutes.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-3" class="tab-content">
-<div id="nav-tabpanel-3-Windows" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-3-Windows">
+<div id="nav-tabpanel-3-Windows" class="tab-pane show active" aria-labelledby="nav-tab-3-Windows" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">POWERSHELL<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -736,7 +736,7 @@ several minutes.</p>
 <span id="cb13-5"><a href="#cb13-5" tabindex="-1" aria-label="code-block-13-5"></a>pixi run <span class="op">-</span>e py313 wheel-smoke</span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-3-Linux" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-3-Linux">
+<div id="nav-tabpanel-3-Linux" class="tab-pane" aria-labelledby="nav-tab-3-Linux" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -745,7 +745,7 @@ several minutes.</p>
 <span id="cb14-3"><a href="#cb14-3" tabindex="-1" aria-label="code-block-14-3"></a><span class="fu">make</span> wheel-smoke</span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-3-macOS" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-3-macOS">
+<div id="nav-tabpanel-3-macOS" class="tab-pane" aria-labelledby="nav-tab-3-macOS" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -838,8 +838,8 @@ project-managed tools.</p>
   "url": "https://ornl-training.github.io/python-to-rust-and-back-again/instructor/index.html",
   "identifier": "https://ornl-training.github.io/python-to-rust-and-back-again/instructor/index.html",
   "dateCreated": "2026-09-20",
-  "dateModified": "2026-09-25",
-  "datePublished": "2026-09-25"
+  "dateModified": "2026-09-29",
+  "datePublished": "2026-09-29"
 }
 
   </script><script>
