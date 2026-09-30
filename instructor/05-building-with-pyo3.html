@@ -118,7 +118,7 @@
     <a id="search-button" class="btn btn-primary" href="../instructor/aio.html" role="button" aria-label="Search the All In One page">Search the All In One page</a>
   </div><!--/div.container-fluid -->
 </nav><aside class="col-md-12 lesson-progress"><div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: 56%" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100" aria-label="Lesson Progress">56%</div>
+    <div class="progress-bar incubator" role="progressbar" style="width: 53%" aria-valuenow="53" aria-valuemin="0" aria-valuemax="100" aria-label="Lesson Progress">53%</div>
   </div>
 </aside><div class="container">
       <div class="row">
@@ -333,7 +333,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Building a Python Extension with PyO3</h1>
-        <p>Last updated on 2026-09-25 |
+        <p>Last updated on 2026-09-30 |
 
         <a href="https://github.com/ornl-training/python-to-rust-and-back-again/edit/main/episodes/05-building-with-pyo3.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -464,7 +464,9 @@ stable ABI can support multiple compatible CPython minor versions.</p>
 <p><code>Cargo.toml</code> pins <code>acorn-lib</code> and
 <code>acorn-schema</code> to one immutable public Git revision. No local
 ACORN checkout is needed. Changing that revision requires a dependency
-review and falls outside the workshop.</p>
+review and falls outside the workshop. See the completed project’s <a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/pyproject.toml#L30-39" class="external-link"><code>pyproject.toml</code>
+build configuration (lines 30–39)</a> and <a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/Cargo.toml#L13-19" class="external-link"><code>Cargo.toml</code>
+dependency pins (lines 13–19)</a>.</p>
 </section><section><h2 class="section-heading" id="expose-the-first-validator">Expose the first validator<a class="anchor" aria-label="anchor" href="#expose-the-first-validator"></a></h2>
 <hr class="half-width"><p>At the first binding checkpoint, <code>src/lib.rs</code> contains one
 Python function and the module structure needed to preserve the public
@@ -495,6 +497,10 @@ import path:</p>
 <span id="cb2-21"><a href="#cb2-21" tabindex="-1" aria-label="code-block-2-21"></a>    <span class="cn">Ok</span>(())</span>
 <span id="cb2-22"><a href="#cb2-22" tabindex="-1" aria-label="code-block-2-22"></a><span class="op">}</span></span></code></pre>
 </div>
+<p>Reference implementation: <a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L42-85" class="external-link"><code>acorn-py</code>
+module initializer (lines 42–85)</a>, <a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L558-573" class="external-link"><code>is_doi</code>
+binding (lines 558–573)</a>, and <a href="https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/validation/mod.rs#L218-221" class="external-link">the
+canonical ACORN DOI rule (lines 218–221)</a>.</p>
 <p><code>#[pyfunction]</code> makes the Rust function callable by
 Python. <code>wrap_pyfunction!</code> adds it to the
 <code>validate</code> module, and the <code>sys.modules</code> entries
@@ -582,6 +588,10 @@ construction:</p>
 <span id="cb4-25"><a href="#cb4-25" tabindex="-1" aria-label="code-block-4-25"></a>    <span class="op">}</span></span>
 <span id="cb4-26"><a href="#cb4-26" tabindex="-1" aria-label="code-block-4-26"></a><span class="op">}</span></span></code></pre>
 </div>
+<p>The completed project uses a generated wrapper rather than this
+teaching-sized class; compare its <a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L97-104" class="external-link"><code>PyDOI</code>
+definition (lines 97–104)</a> and <a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L208-221" class="external-link"><code>DOI</code>
+wrapper implementation (lines 208–221)</a>.</p>
 <p>Register it under a sibling <code>pid</code> module using the same
 parent-child and <code>sys.modules</code> pattern as
 <code>validate</code>. Create and attach <code>pid</code> before
@@ -604,6 +614,8 @@ qualified names:</p>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a>modules<span class="op">.</span>set_item(<span class="st">"acorn.schema.validate"</span><span class="op">,</span> validate)<span class="op">?;</span></span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1" aria-label="code-block-6-3"></a>modules<span class="op">.</span>set_item(<span class="st">"acorn.schema.pid"</span><span class="op">,</span> pid)<span class="op">?;</span></span></code></pre>
 </div>
+<p><a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L77-84" class="external-link">Reference
+implementation: nested-module registration (lines 77–84)</a></p>
 <p><code>frozen</code> prevents Python callers from replacing
 Rust-managed fields. The constructor turns invalid input into
 <code>ValueError</code>, so a successfully created <code>Doi</code>
@@ -617,9 +629,10 @@ or behavior justifies a class.</p>
 <div id="bind-a-second-validator" class="callout-inner">
 <h3 class="callout-title">Bind a second validator</h3>
 <div class="callout-content">
-<p>Add an <code>is_orcid(value: &amp;str) -&gt; bool</code> function
-using ACORN’s canonical ORCID rule. Register it beside
-<code>is_doi</code>, rebuild, and verify these calls:</p>
+<p>How would you add an
+<code>is_orcid(value: &amp;str) -&gt; bool</code> function using ACORN’s
+canonical ORCiD rule. Register it beside <code>is_doi</code>, rebuild,
+and verify these calls:</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -628,6 +641,8 @@ using ACORN’s canonical ORCID rule. Register it beside
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1" aria-label="code-block-7-3"></a><span class="cf">assert</span> is_orcid(<span class="st">"https://orcid.org/0000-0002-2057-9115"</span>)</span>
 <span id="cb7-4"><a href="#cb7-4" tabindex="-1" aria-label="code-block-7-4"></a><span class="cf">assert</span> <span class="kw">not</span> is_orcid(<span class="st">"abc-0000-0000-0000"</span>)</span></code></pre>
 </div>
+<p><a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/tests/test_validate.py#L94-99" class="external-link">Reference
+test: <code>acorn-py</code> ORCID cases (lines 94–99)</a></p>
 </div>
 </div>
 </div>
@@ -636,7 +651,7 @@ using ACORN’s canonical ORCID rule. Register it beside
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The binding follows the same shape as the first validator:</p>
 <div class="codewrapper sourceCode" id="cb8">
@@ -647,12 +662,17 @@ using ACORN’s canonical ORCID rule. Register it beside
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1" aria-label="code-block-8-3"></a>    <span class="pp">rules::</span>orcid(value)<span class="op">.</span>is_ok()</span>
 <span id="cb8-4"><a href="#cb8-4" tabindex="-1" aria-label="code-block-8-4"></a><span class="op">}</span></span></code></pre>
 </div>
+<p>Reference implementation: <a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L587-600" class="external-link"><code>is_orcid</code>
+binding (lines 587–600)</a> and <a href="https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/validation/mod.rs#L234-237" class="external-link">the
+canonical ACORN ORCID rule (lines 234–237)</a>.</p>
 <p>Register it inside <code>acorn_py</code>:</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">RUST<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode rust" tabindex="0"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a>validate<span class="op">.</span>add_function(<span class="pp">wrap_pyfunction!</span>(is_orcid<span class="op">,</span> <span class="op">&amp;</span>validate)<span class="op">?</span>)<span class="op">?;</span></span></code></pre>
 </div>
+<p><a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L59-76" class="external-link">Reference
+implementation: validator registration (lines 59–76)</a></p>
 <p>Then run <code>pixi run -e py313 develop</code> before executing the
 Python assertions.</p>
 </div>
@@ -742,8 +762,8 @@ one boolean out.</li>
   "url": "https://ornl-training.github.io/python-to-rust-and-back-again/instructor/05-building-with-pyo3.html",
   "identifier": "https://ornl-training.github.io/python-to-rust-and-back-again/instructor/05-building-with-pyo3.html",
   "dateCreated": "2026-09-20",
-  "dateModified": "2026-09-25",
-  "datePublished": "2026-09-29"
+  "dateModified": "2026-09-30",
+  "datePublished": "2026-09-30"
 }
 
   </script><script>

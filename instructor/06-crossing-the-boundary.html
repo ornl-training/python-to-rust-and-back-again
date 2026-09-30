@@ -118,7 +118,7 @@
     <a id="search-button" class="btn btn-primary" href="../instructor/aio.html" role="button" aria-label="Search the All In One page">Search the All In One page</a>
   </div><!--/div.container-fluid -->
 </nav><aside class="col-md-12 lesson-progress"><div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" aria-label="Lesson Progress">72%</div>
+    <div class="progress-bar incubator" role="progressbar" style="width: 71%" aria-valuenow="71" aria-valuemin="0" aria-valuemax="100" aria-label="Lesson Progress">71%</div>
   </div>
 </aside><div class="container">
       <div class="row">
@@ -333,7 +333,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>From Python to Rust and Back Again</h1>
-        <p>Last updated on 2026-09-25 |
+        <p>Last updated on 2026-09-30 |
 
         <a href="https://github.com/ornl-training/python-to-rust-and-back-again/edit/main/episodes/06-crossing-the-boundary.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -447,6 +447,9 @@ a Python exception:</p>
 <span id="cb1-9"><a href="#cb1-9" tabindex="-1" aria-label="code-block-1-9"></a>    )</span>
 <span id="cb1-10"><a href="#cb1-10" tabindex="-1" aria-label="code-block-1-10"></a><span class="op">}</span></span></code></pre>
 </div>
+<p>Reference implementation: <a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L509-522" class="external-link"><code>acorn-py</code>
+exception translation (lines 509–522)</a> and <a href="https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/validate/mod.rs#L258-290" class="external-link"><code>acorn-schema</code>
+formatter (lines 258–290)</a>.</p>
 <p>The public Python contract is now explicit:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -458,6 +461,8 @@ a Python exception:</p>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1" aria-label="code-block-2-5"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>, match<span class="op">=</span><span class="st">"Unable to format"</span>):</span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1" aria-label="code-block-2-6"></a>        format_phone_number(<span class="st">"not a phone number"</span>)</span></code></pre>
 </div>
+<p><a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/tests/test_validate.py#L19-24" class="external-link">Reference
+test: successful and failing phone-number cases (lines 19–24)</a></p>
 <p>The schema function returns ACORN’s structured
 <code>ValidationError</code>; converting it to text uses its
 human-readable message while PyO3 supplies the Python exception type. Do
@@ -579,6 +584,8 @@ values, and exceptions users observe:</p>
 <span id="cb5-4"><a href="#cb5-4" tabindex="-1" aria-label="code-block-5-4"></a>    <span class="cf">assert</span> is_doi(<span class="st">"10.11578/dc.20250604.1"</span>)</span>
 <span id="cb5-5"><a href="#cb5-5" tabindex="-1" aria-label="code-block-5-5"></a>    <span class="cf">assert</span> <span class="kw">not</span> is_doi(<span class="st">"totally invalid string"</span>)</span></code></pre>
 </div>
+<p><a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/tests/test_validate.py#L83-91" class="external-link">Reference
+test: <code>acorn-py</code> DOI cases (lines 83–91)</a></p>
 <p>Run the Python-facing suite in both supported environments:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -593,6 +600,9 @@ install:</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="ex">pixi</span> run <span class="at">-e</span> py313 wheel-smoke</span></code></pre>
 </div>
+<p><a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/pyproject.toml#L46-100" class="external-link">Reference
+configuration: test environments and clean-wheel smoke task (lines 46–49
+and 82–100)</a></p>
 <p>The smoke task builds the locked release wheel, installs it into a
 clean environment, imports <code>acorn</code>, and verifies that the
 installed distribution is <code>acorn-py</code> at the expected
@@ -605,10 +615,10 @@ version.</p>
 <div id="test-a-complete-round-trip" class="callout-inner">
 <h3 class="callout-title">Test a complete round trip</h3>
 <div class="callout-content">
-<p>Add Python tests for the successful and failing paths of
-<code>format_phone_number</code>. Then add a validator test that imports
-<code>is_orcid</code> from <code>acorn.schema.validate</code>. Which
-assertions protect the Rust behavior, and which protect the
+<p>How would you add Python tests for the successful and failing paths
+of <code>format_phone_number</code>. Then add a validator test that
+imports <code>is_orcid</code> from <code>acorn.schema.validate</code>.
+Which assertions protect the Rust behavior, and which protect the
 cross-language contract?</p>
 </div>
 </div>
@@ -618,7 +628,7 @@ cross-language contract?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The formatted value and validation booleans describe domain behavior.
 The import path, accepted Python argument types, <code>ValueError</code>
@@ -713,8 +723,8 @@ import can miss.</li>
   "url": "https://ornl-training.github.io/python-to-rust-and-back-again/instructor/06-crossing-the-boundary.html",
   "identifier": "https://ornl-training.github.io/python-to-rust-and-back-again/instructor/06-crossing-the-boundary.html",
   "dateCreated": "2026-09-20",
-  "dateModified": "2026-09-25",
-  "datePublished": "2026-09-29"
+  "dateModified": "2026-09-30",
+  "datePublished": "2026-09-30"
 }
 
   </script><script>

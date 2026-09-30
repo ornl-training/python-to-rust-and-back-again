@@ -332,7 +332,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>There and Back Again</h1>
-        <p>Last updated on 2026-09-25 |
+        <p>Last updated on 2026-09-30 |
 
         <a href="https://github.com/ornl-training/python-to-rust-and-back-again/edit/main/episodes/01-there-and-back-again.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -437,14 +437,16 @@ API.</li>
 </div>
 </div>
 <section><h2 class="section-heading" id="two-languages-two-jobs">Two languages, two jobs<a class="anchor" aria-label="anchor" href="#two-languages-two-jobs"></a></h2>
-<hr class="half-width"><p>Python optimizes for developer momentum: expressive code, a rich
-ecosystem, and a fast path from experiment to working software. Rust
-optimizes for control and confidence: predictable performance, memory
+<hr class="half-width"><p>Python is very accepting and will run just about anything you pass
+it. It offers expressive code, a rich ecosystem, and a fast path from
+experiment to working software. Rust optimizes for replicability and
+reproducibility: predictable performance, portable deployments, memory
 safety without a garbage collector, and errors caught before
 deployment.</p>
+
 <p>Ask where each language creates the most value in the project.</p>
-<table class="table"><colgroup><col width="50%"><col width="50%"></colgroup><thead><tr><th align="left">Python is often strongest at</th>
-<th align="left">Rust is often strongest at</th>
+<table class="table"><colgroup><col width="50%"><col width="50%"></colgroup><thead><tr><th align="left">Python is often used for</th>
+<th align="left">Rust could be a better fit</th>
 </tr></thead><tbody><tr><td align="left">orchestration and application logic</td>
 <td align="left">tight compute-heavy loops</td>
 </tr><tr><td align="left">exploration and rapid iteration</td>
@@ -482,11 +484,10 @@ ingest job, not merely a microbenchmark.</td>
 <td align="left">Support the required wheels without making every Python
 maintainer debug Rust.</td>
 </tr></tbody></table><p>Measure through the interface users will call. A Rust function may be
-fast in isolation while conversion, repeated boundary crossings, or
-wheel startup dominates the installed package. The experiment may also
-succeed without a speedup: reusing a trusted crate or making memory use
-more predictable can be a valid result when that was the stated
-target.</p>
+fast in isolation, but might be slow because of conversion, repeated
+boundary crossings, or wheel startup. The experiment may also succeed
+without a speedup: reusing a trusted crate or making memory use more
+predictable can be a valid result when that was the stated target.</p>
 </section><section><h2 class="section-heading" id="our-route-acorn-py">Our route: <code>acorn-py</code>
 <a class="anchor" aria-label="anchor" href="#our-route-acorn-py"></a></h2>
 <hr class="half-width"><p>Throughout the workshop we will build a representative slice of <a href="https://code.ornl.gov/research-enablement/acorn-py" class="external-link"><code>acorn-py</code></a>.
@@ -498,6 +499,9 @@ Its Python users work with familiar imports such as:</p>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a></span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="cf">assert</span> is_doi(<span class="st">"10.11578/dc.20250604.1"</span>)</span></code></pre>
 </div>
+<p><a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L558-573" class="external-link">Reference
+implementation: <code>is_doi</code> in <code>acorn-py</code> (lines
+558–573)</a></p>
 <p>Behind that API, PyO3 exposes validation and schema behavior from the
 Rust crates <code>acorn-lib</code> and <code>acorn-schema</code>. This
 is a credible incremental boundary: identifier validation is
@@ -642,8 +646,8 @@ design.</li>
   "url": "https://ornl-training.github.io/python-to-rust-and-back-again/01-there-and-back-again.html",
   "identifier": "https://ornl-training.github.io/python-to-rust-and-back-again/01-there-and-back-again.html",
   "dateCreated": "2026-09-20",
-  "dateModified": "2026-09-25",
-  "datePublished": "2026-09-29"
+  "dateModified": "2026-09-30",
+  "datePublished": "2026-09-30"
 }
 
   </script><script>

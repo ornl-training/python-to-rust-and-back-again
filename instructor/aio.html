@@ -375,7 +375,7 @@
         
 <section id="aio-01-there-and-back-again"><p>Content from <a href="01-there-and-back-again.html">There and Back Again</a></p>
 <hr>
-<p>Last updated on 2026-09-25 |
+<p>Last updated on 2026-09-30 |
 
         <a href="https://github.com/ornl-training/python-to-rust-and-back-again/edit/main/episodes/01-there-and-back-again.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 15 minutes</p>
@@ -482,11 +482,26 @@ API.</li>
 <section><h2 class="section-heading" id="two-languages-two-jobs">Two languages, two jobs<a class="anchor" aria-label="anchor" href="#two-languages-two-jobs"></a>
 </h2>
 <hr class="half-width">
-<p>Python optimizes for developer momentum: expressive code, a rich
-ecosystem, and a fast path from experiment to working software. Rust
-optimizes for control and confidence: predictable performance, memory
+<p>Python is very accepting and will run just about anything you pass
+it. It offers expressive code, a rich ecosystem, and a fast path from
+experiment to working software. Rust optimizes for replicability and
+reproducibility: predictable performance, portable deployments, memory
 safety without a garbage collector, and errors caught before
 deployment.</p>
+<div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
+  <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
+</button>
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div class="accordion-body">
+<p>Reproduction verifies that the original result can be regenerated;
+replication tests whether the result survives a new, independent
+attempt.</p>
+</div>
+</div>
+</div>
+</div>
 <p>Ask where each language creates the most value in the project.</p>
 <table class="table">
 <colgroup>
@@ -494,8 +509,8 @@ deployment.</p>
 <col width="50%">
 </colgroup>
 <thead><tr>
-<th align="left">Python is often strongest at</th>
-<th align="left">Rust is often strongest at</th>
+<th align="left">Python is often used for</th>
+<th align="left">Rust could be a better fit</th>
 </tr></thead>
 <tbody>
 <tr>
@@ -565,11 +580,10 @@ maintainer debug Rust.</td>
 </tbody>
 </table>
 <p>Measure through the interface users will call. A Rust function may be
-fast in isolation while conversion, repeated boundary crossings, or
-wheel startup dominates the installed package. The experiment may also
-succeed without a speedup: reusing a trusted crate or making memory use
-more predictable can be a valid result when that was the stated
-target.</p>
+fast in isolation, but might be slow because of conversion, repeated
+boundary crossings, or wheel startup. The experiment may also succeed
+without a speedup: reusing a trusted crate or making memory use more
+predictable can be a valid result when that was the stated target.</p>
 </section><section><h2 class="section-heading" id="our-route-acorn-py">Our route: <code>acorn-py</code>
 <a class="anchor" aria-label="anchor" href="#our-route-acorn-py"></a>
 </h2>
@@ -583,6 +597,9 @@ Its Python users work with familiar imports such as:</p>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a></span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="cf">assert</span> is_doi(<span class="st">"10.11578/dc.20250604.1"</span>)</span></code></pre>
 </div>
+<p><a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L558-573" class="external-link">Reference
+implementation: <code>is_doi</code> in <code>acorn-py</code> (lines
+558–573)</a></p>
 <p>Behind that API, PyO3 exposes validation and schema behavior from the
 Rust crates <code>acorn-lib</code> and <code>acorn-schema</code>. This
 is a credible incremental boundary: identifier validation is
@@ -680,7 +697,7 @@ design.</li>
 </div>
 </section></section><section id="aio-02-translating-python-into-rust"><p>Content from <a href="02-translating-python-into-rust.html">Translating Python into Rust</a></p>
 <hr>
-<p>Last updated on 2026-09-25 |
+<p>Last updated on 2026-09-30 |
 
         <a href="https://github.com/ornl-training/python-to-rust-and-back-again/edit/main/episodes/02-translating-python-into-rust.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 35 minutes</p>
@@ -809,6 +826,8 @@ declared type and compile-time value.</td>
 <span id="cb2-7"><a href="#cb2-7" tabindex="-1" aria-label="code-block-2-7"></a>        <span class="op">.</span>count()</span>
 <span id="cb2-8"><a href="#cb2-8" tabindex="-1" aria-label="code-block-2-8"></a><span class="op">}</span></span></code></pre>
 </div>
+<p><a href="https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/validation/mod.rs#L218-221" class="external-link">Associated
+ACORN source: the canonical DOI rule (lines 218–221)</a></p>
 <p>The Rust function accepts a borrowed slice, so callers can provide a
 view of a vector without transferring ownership. Its return type records
 that a count is never negative. ACORN groups scalar validators under
@@ -1040,6 +1059,24 @@ calculus</a>, a compact formal notation for creating functions by
 abstraction and applying them to arguments. John McCarthy’s <a href="https://www-formal.stanford.edu/jmc/recursive.html" class="external-link">original Lisp
 paper</a> used <code>LAMBDA</code> in 1960, helping carry the term from
 mathematical logic into programming-language vocabulary.</p>
+<p><span class="math display">\[
+{\Large \widehat{y}}
+\quad\longrightarrow\quad
+{\Large \wedge y}
+\quad\longrightarrow\quad
+{\Large \lambda y}
+\]</span></p>
+<ul>
+<li>
+<span class="math inline">\(\hat{y}\)</span>: Original notation used
+by A. Church</li>
+<li>
+<span class="math inline">\(\land y\)</span>: Became this in typed
+manuscript</li>
+<li>
+<span class="math inline">\(\lambda y\)</span>: Used by
+typesetter</li>
+</ul>
 <p>Python keeps <code>lambda</code> as the keyword for an anonymous
 function expression. Rust uses the term <em>closure</em>, which
 emphasizes that the callable value may capture part of its surrounding
@@ -1222,9 +1259,11 @@ fails:</p>
 <span id="cb17-12"><a href="#cb17-12" tabindex="-1" aria-label="code-block-17-12"></a>    )<span class="op">;</span></span>
 <span id="cb17-13"><a href="#cb17-13" tabindex="-1" aria-label="code-block-17-13"></a><span class="op">}</span></span></code></pre>
 </div>
+<p><a href="https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/validate/tests.rs#L206-219" class="external-link">ACORN
+source: DOI validator test (lines 206–219)</a></p>
 <p>In the crate itself, a domain module includes its adjacent tests with
-<code>#[cfg(test)] mod tests;</code>, so test-only code is absent from
-normal builds.</p>
+<a href="https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/validation/mod.rs#L859-860" class="external-link"><code>#[cfg(test)] mod tests;</code></a>,
+so test-only code is absent from normal builds.</p>
 <div id="translate-a-small-function" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -1254,7 +1293,7 @@ should represent the case where no DOI is found.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">RUST<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1309,7 +1348,7 @@ sequential data without taking ownership of it.</li>
 </div>
 </section></section><section id="aio-03-where-the-analogy-ends"><p>Content from <a href="03-where-the-analogy-ends.html">Where the Analogy Ends</a></p>
 <hr>
-<p>Last updated on 2026-09-25 |
+<p>Last updated on 2026-09-30 |
 
         <a href="https://github.com/ornl-training/python-to-rust-and-back-again/edit/main/episodes/03-where-the-analogy-ends.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 25 minutes</p>
@@ -1472,12 +1511,17 @@ consistent Python-facing <code>Patent</code> object.</p>
 <span id="cb3-18"><a href="#cb3-18" tabindex="-1" aria-label="code-block-3-18"></a>    <span class="pp">assert_eq!</span>(patent<span class="op">.</span>identifier()<span class="op">,</span> <span class="st">"US 7654321 B2"</span>)<span class="op">;</span></span>
 <span id="cb3-19"><a href="#cb3-19" tabindex="-1" aria-label="code-block-3-19"></a><span class="op">}</span></span></code></pre>
 </div>
-<p>This is the schema crate’s real <code>Patent</code> enum rather than
-a workshop-only facsimile. Importing <code>PersistentIdentifier</code>
-brings its shared methods into scope; ACORN’s identifier types use that
-trait for behaviors such as <code>identifier()</code> and
-<code>schema_uri()</code>. The exhaustive <code>match</code> must be
-revisited if the schema adds another patent variant.</p>
+<p>Reference implementation: <a href="https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/pid/patent/mod.rs#L117-147" class="external-link"><code>Patent</code>
+enum (lines 117–147)</a>, <a href="https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/pid/mod.rs#L62-95" class="external-link"><code>PersistentIdentifier</code>
+trait (lines 62–95)</a>, and <a href="https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/pid/patent/mod.rs#L252-283" class="external-link"><code>Patent</code>
+trait implementation (lines 252–283)</a>.</p>
+<p>Importing <code>PersistentIdentifier</code> brings its shared methods
+into scope; ACORN’s identifier types use that trait for behaviors such
+as <code>identifier()</code> and <code>schema_uri()</code>. The
+exhaustive <code>match</code> must be revisited if the schema adds
+another patent variant. The completed binding performs the same
+exhaustive conversion in <a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L299-353" class="external-link"><code>acorn-py</code>
+(lines 299–353)</a>.</p>
 </section><section><h2 class="section-heading" id="compile-time-guarantees-and-concurrency">Compile-time guarantees and concurrency<a class="anchor" aria-label="anchor" href="#compile-time-guarantees-and-concurrency"></a>
 </h2>
 <hr class="half-width">
@@ -1496,17 +1540,18 @@ mutable state:</p>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a></span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a><span class="kw">fn</span> count_nonempty(left<span class="op">:</span> <span class="op">&amp;</span>[<span class="dt">String</span>]<span class="op">,</span> right<span class="op">:</span> <span class="op">&amp;</span>[<span class="dt">String</span>]) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span><span class="dt">usize</span><span class="op">,</span> <span class="op">&amp;</span><span class="ot">'static</span> <span class="dt">str</span><span class="op">&gt;</span> <span class="op">{</span></span>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1" aria-label="code-block-4-4"></a>    <span class="pp">thread::</span>scope(<span class="op">|</span>scope<span class="op">|</span> <span class="op">{</span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1" aria-label="code-block-4-5"></a>        <span class="kw">let</span> left_worker <span class="op">=</span></span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1" aria-label="code-block-4-6"></a>            scope<span class="op">.</span>spawn(<span class="op">||</span> left<span class="op">.</span>iter()<span class="op">.</span>filter(<span class="op">|</span>value<span class="op">|</span> <span class="op">!</span>value<span class="op">.</span>is_empty())<span class="op">.</span>count())<span class="op">;</span></span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1" aria-label="code-block-4-7"></a>        <span class="kw">let</span> right_worker <span class="op">=</span></span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1" aria-label="code-block-4-8"></a>            scope<span class="op">.</span>spawn(<span class="op">||</span> right<span class="op">.</span>iter()<span class="op">.</span>filter(<span class="op">|</span>value<span class="op">|</span> <span class="op">!</span>value<span class="op">.</span>is_empty())<span class="op">.</span>count())<span class="op">;</span></span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1" aria-label="code-block-4-9"></a></span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1" aria-label="code-block-4-10"></a>        <span class="cf">match</span> (left_worker<span class="op">.</span>join()<span class="op">,</span> right_worker<span class="op">.</span>join()) <span class="op">{</span></span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1" aria-label="code-block-4-11"></a>            <span class="op">|</span> (<span class="cn">Ok</span>(left_count)<span class="op">,</span> <span class="cn">Ok</span>(right_count)) <span class="op">=&gt;</span> <span class="cn">Ok</span>(left_count <span class="op">+</span> right_count)<span class="op">,</span></span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1" aria-label="code-block-4-12"></a>            <span class="op">|</span> _ <span class="op">=&gt;</span> <span class="cn">Err</span>(<span class="st">"a counting worker panicked"</span>)<span class="op">,</span></span>
-<span id="cb4-13"><a href="#cb4-13" tabindex="-1" aria-label="code-block-4-13"></a>        <span class="op">}</span></span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1" aria-label="code-block-4-14"></a>    <span class="op">}</span>)</span>
-<span id="cb4-15"><a href="#cb4-15" tabindex="-1" aria-label="code-block-4-15"></a><span class="op">}</span></span></code></pre>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1" aria-label="code-block-4-5"></a>        <span class="kw">let</span> left_worker <span class="op">=</span> scope<span class="op">.</span>spawn(<span class="op">||</span> <span class="op">{</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1" aria-label="code-block-4-6"></a>            left<span class="op">.</span>iter()<span class="op">.</span>filter(<span class="op">|</span>value<span class="op">|</span> <span class="op">!</span>value<span class="op">.</span>is_empty())<span class="op">.</span>count()</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1" aria-label="code-block-4-7"></a>        <span class="op">}</span>)<span class="op">;</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1" aria-label="code-block-4-8"></a>        <span class="kw">let</span> right_worker <span class="op">=</span> scope<span class="op">.</span>spawn(<span class="op">||</span> <span class="op">{</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1" aria-label="code-block-4-9"></a>            right<span class="op">.</span>iter()<span class="op">.</span>filter(<span class="op">|</span>value<span class="op">|</span> <span class="op">!</span>value<span class="op">.</span>is_empty())<span class="op">.</span>count()</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1" aria-label="code-block-4-10"></a>        <span class="op">}</span>)<span class="op">;</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1" aria-label="code-block-4-11"></a>        <span class="cf">match</span> (left_worker<span class="op">.</span>join()<span class="op">,</span> right_worker<span class="op">.</span>join()) <span class="op">{</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1" aria-label="code-block-4-12"></a>            <span class="op">|</span> (<span class="cn">Ok</span>(left_count)<span class="op">,</span> <span class="cn">Ok</span>(right_count)) <span class="op">=&gt;</span> <span class="cn">Ok</span>(left_count <span class="op">+</span> right_count)<span class="op">,</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1" aria-label="code-block-4-13"></a>            <span class="op">|</span> _ <span class="op">=&gt;</span> <span class="cn">Err</span>(<span class="st">"a counting worker panicked"</span>)<span class="op">,</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1" aria-label="code-block-4-14"></a>        <span class="op">}</span></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1" aria-label="code-block-4-15"></a>    <span class="op">}</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1" aria-label="code-block-4-16"></a><span class="op">}</span></span></code></pre>
 </div>
 <p>The slices are borrowed, not copied. Returning partial counts also
 avoids a mutex. Ownership rules prevent either worker from outliving the
@@ -1540,7 +1585,8 @@ rules out invalid memory relationships while you test the idea.</td>
 prototyping.”</td>
 <td align="left">They can interrupt a first draft, so begin with owned
 values and use a temporary clone when that keeps the experiment moving.
-Revisit the ownership once the shape is clear.</td>
+Revisit the ownership once the shape is clear. e.g., Use
+<code>value.clone()</code> when iterating over borrowed data.</td>
 </tr>
 <tr>
 <td align="left">“You have to get all the details right from the
@@ -1553,9 +1599,9 @@ unfinished path works.</td>
 <td align="left">“Rust always requires you to handle errors.”</td>
 <td align="left">Rust makes recoverable failure visible with
 <code>Result</code>, but a prototype can deliberately stop with
-<code>unwrap()</code>, <code>todo!()</code>, or
-<code>unreachable!()</code>. Production code still needs an intentional
-policy for user-triggerable failures.</td>
+<code>unwrap()</code>, <code>todo!()</code>,
+<code>unreachable!()</code>, or <code>?</code>. Production code still
+needs an intentional policy for user-triggerable failures.</td>
 </tr>
 </tbody>
 </table>
@@ -1598,8 +1644,9 @@ reference would point to freed memory. Return an owned
 <h3 class="code-label">RUST<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode rust" tabindex="0"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="kw">fn</span> first_word() <span class="op">-&gt;</span> <span class="dt">String</span> <span class="op">{</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a>    <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"hello"</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1" aria-label="code-block-6-3"></a><span class="op">}</span></span></code></pre>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a>    <span class="kw">let</span> message <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"hello from Rust"</span>)<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1" aria-label="code-block-6-3"></a>    message[<span class="op">..</span><span class="dv">5</span>]<span class="op">.</span>to_owned()</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1" aria-label="code-block-6-4"></a><span class="op">}</span></span></code></pre>
 </div>
 <p>Alternatively, accept an input string and return a slice borrowed
 from that input.</p>
@@ -1632,10 +1679,10 @@ visible and are reviewed before production.</li>
 </div>
 </section></section><section id="aio-04-adding-rust-incrementally"><p>Content from <a href="04-adding-rust-incrementally.html">Adding Rust to Python Incrementally</a></p>
 <hr>
-<p>Last updated on 2026-09-25 |
+<p>Last updated on 2026-09-30 |
 
         <a href="https://github.com/ornl-training/python-to-rust-and-back-again/edit/main/episodes/04-adding-rust-incrementally.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 25 minutes</p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 15 minutes</p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -1695,6 +1742,9 @@ implementation is a native extension:</p>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="cf">assert</span> is_doi(<span class="st">"10.11578/dc.20250604.1"</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a><span class="cf">assert</span> <span class="kw">not</span> is_doi(<span class="st">"not an identifier"</span>)</span></code></pre>
 </div>
+<p><a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L558-573" class="external-link">Reference
+implementation: Python-facing <code>is_doi</code> binding (lines
+558–573)</a></p>
 <p><code>acorn-py</code> is the distribution name shown by package
 installers, while <code>acorn</code> is the import name and
 <code>acorn.schema.validate</code> is a nested module registered by the
@@ -1731,6 +1781,8 @@ eventually the wheel:</p>
 <span id="cb2-14"><a href="#cb2-14" tabindex="-1" aria-label="code-block-2-14"></a><span class="kw">def</span> test_is_doi_contract(value: <span class="bu">str</span>, expected: <span class="bu">bool</span>):</span>
 <span id="cb2-15"><a href="#cb2-15" tabindex="-1" aria-label="code-block-2-15"></a>    <span class="cf">assert</span> is_doi(value) <span class="kw">is</span> expected</span></code></pre>
 </div>
+<p><a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/tests/test_validate.py#L83-91" class="external-link">Reference
+test: <code>acorn-py</code> DOI contract cases (lines 83–91)</a></p>
 <p>This test intentionally imports the public path rather than a private
 helper. It protects the name, accepted Python value, return type, and
 domain behavior in one place. Add edge cases from production data before
@@ -1786,6 +1838,9 @@ concrete:</p>
 <span id="cb3-7"><a href="#cb3-7" tabindex="-1" aria-label="code-block-3-7"></a>        <span class="op">.</span>collect()</span>
 <span id="cb3-8"><a href="#cb3-8" tabindex="-1" aria-label="code-block-3-8"></a><span class="op">}</span></span></code></pre>
 </div>
+<p><a href="https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/validation/mod.rs#L218-221" class="external-link">Associated
+ACORN source: the scalar DOI rule used by the batch example (lines
+218–221)</a></p>
 <p>Do not add batching merely because it sounds faster. Benchmark the
 scalar and batch interfaces with realistic inputs, including the
 conversion performed by PyO3. Choose the smallest contract that meets
@@ -1855,7 +1910,7 @@ implementation.</li>
 </div>
 </section></section><section id="aio-05-building-with-pyo3"><p>Content from <a href="05-building-with-pyo3.html">Building a Python Extension with PyO3</a></p>
 <hr>
-<p>Last updated on 2026-09-25 |
+<p>Last updated on 2026-09-30 |
 
         <a href="https://github.com/ornl-training/python-to-rust-and-back-again/edit/main/episodes/05-building-with-pyo3.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 30 minutes</p>
@@ -2029,7 +2084,9 @@ stable ABI can support multiple compatible CPython minor versions.</p>
 <p><code>Cargo.toml</code> pins <code>acorn-lib</code> and
 <code>acorn-schema</code> to one immutable public Git revision. No local
 ACORN checkout is needed. Changing that revision requires a dependency
-review and falls outside the workshop.</p>
+review and falls outside the workshop. See the completed project’s <a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/pyproject.toml#L30-39" class="external-link"><code>pyproject.toml</code>
+build configuration (lines 30–39)</a> and <a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/Cargo.toml#L13-19" class="external-link"><code>Cargo.toml</code>
+dependency pins (lines 13–19)</a>.</p>
 </section><section><h2 class="section-heading" id="expose-the-first-validator">Expose the first validator<a class="anchor" aria-label="anchor" href="#expose-the-first-validator"></a>
 </h2>
 <hr class="half-width">
@@ -2062,6 +2119,10 @@ import path:</p>
 <span id="cb2-21"><a href="#cb2-21" tabindex="-1" aria-label="code-block-2-21"></a>    <span class="cn">Ok</span>(())</span>
 <span id="cb2-22"><a href="#cb2-22" tabindex="-1" aria-label="code-block-2-22"></a><span class="op">}</span></span></code></pre>
 </div>
+<p>Reference implementation: <a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L42-85" class="external-link"><code>acorn-py</code>
+module initializer (lines 42–85)</a>, <a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L558-573" class="external-link"><code>is_doi</code>
+binding (lines 558–573)</a>, and <a href="https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/validation/mod.rs#L218-221" class="external-link">the
+canonical ACORN DOI rule (lines 218–221)</a>.</p>
 <p><code>#[pyfunction]</code> makes the Rust function callable by
 Python. <code>wrap_pyfunction!</code> adds it to the
 <code>validate</code> module, and the <code>sys.modules</code> entries
@@ -2174,6 +2235,10 @@ construction:</p>
 <span id="cb4-25"><a href="#cb4-25" tabindex="-1" aria-label="code-block-4-25"></a>    <span class="op">}</span></span>
 <span id="cb4-26"><a href="#cb4-26" tabindex="-1" aria-label="code-block-4-26"></a><span class="op">}</span></span></code></pre>
 </div>
+<p>The completed project uses a generated wrapper rather than this
+teaching-sized class; compare its <a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L97-104" class="external-link"><code>PyDOI</code>
+definition (lines 97–104)</a> and <a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L208-221" class="external-link"><code>DOI</code>
+wrapper implementation (lines 208–221)</a>.</p>
 <p>Register it under a sibling <code>pid</code> module using the same
 parent-child and <code>sys.modules</code> pattern as
 <code>validate</code>. Create and attach <code>pid</code> before
@@ -2196,6 +2261,8 @@ qualified names:</p>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a>modules<span class="op">.</span>set_item(<span class="st">"acorn.schema.validate"</span><span class="op">,</span> validate)<span class="op">?;</span></span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1" aria-label="code-block-6-3"></a>modules<span class="op">.</span>set_item(<span class="st">"acorn.schema.pid"</span><span class="op">,</span> pid)<span class="op">?;</span></span></code></pre>
 </div>
+<p><a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L77-84" class="external-link">Reference
+implementation: nested-module registration (lines 77–84)</a></p>
 <p><code>frozen</code> prevents Python callers from replacing
 Rust-managed fields. The constructor turns invalid input into
 <code>ValueError</code>, so a successfully created <code>Doi</code>
@@ -2209,9 +2276,10 @@ or behavior justifies a class.</p>
 <div id="bind-a-second-validator" class="callout-inner">
 <h3 class="callout-title">Bind a second validator</h3>
 <div class="callout-content">
-<p>Add an <code>is_orcid(value: &amp;str) -&gt; bool</code> function
-using ACORN’s canonical ORCID rule. Register it beside
-<code>is_doi</code>, rebuild, and verify these calls:</p>
+<p>How would you add an
+<code>is_orcid(value: &amp;str) -&gt; bool</code> function using ACORN’s
+canonical ORCiD rule. Register it beside <code>is_doi</code>, rebuild,
+and verify these calls:</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2220,6 +2288,8 @@ using ACORN’s canonical ORCID rule. Register it beside
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1" aria-label="code-block-7-3"></a><span class="cf">assert</span> is_orcid(<span class="st">"https://orcid.org/0000-0002-2057-9115"</span>)</span>
 <span id="cb7-4"><a href="#cb7-4" tabindex="-1" aria-label="code-block-7-4"></a><span class="cf">assert</span> <span class="kw">not</span> is_orcid(<span class="st">"abc-0000-0000-0000"</span>)</span></code></pre>
 </div>
+<p><a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/tests/test_validate.py#L94-99" class="external-link">Reference
+test: <code>acorn-py</code> ORCID cases (lines 94–99)</a></p>
 </div>
 </div>
 </div>
@@ -2228,7 +2298,7 @@ using ACORN’s canonical ORCID rule. Register it beside
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The binding follows the same shape as the first validator:</p>
 <div class="codewrapper sourceCode" id="cb8">
@@ -2239,12 +2309,17 @@ using ACORN’s canonical ORCID rule. Register it beside
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1" aria-label="code-block-8-3"></a>    <span class="pp">rules::</span>orcid(value)<span class="op">.</span>is_ok()</span>
 <span id="cb8-4"><a href="#cb8-4" tabindex="-1" aria-label="code-block-8-4"></a><span class="op">}</span></span></code></pre>
 </div>
+<p>Reference implementation: <a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L587-600" class="external-link"><code>is_orcid</code>
+binding (lines 587–600)</a> and <a href="https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/validation/mod.rs#L234-237" class="external-link">the
+canonical ACORN ORCID rule (lines 234–237)</a>.</p>
 <p>Register it inside <code>acorn_py</code>:</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">RUST<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode rust" tabindex="0"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a>validate<span class="op">.</span>add_function(<span class="pp">wrap_pyfunction!</span>(is_orcid<span class="op">,</span> <span class="op">&amp;</span>validate)<span class="op">?</span>)<span class="op">?;</span></span></code></pre>
 </div>
+<p><a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L59-76" class="external-link">Reference
+implementation: validator registration (lines 59–76)</a></p>
 <p>Then run <code>pixi run -e py313 develop</code> before executing the
 Python assertions.</p>
 </div>
@@ -2278,7 +2353,7 @@ one boolean out.</li>
 </div>
 </section></section><section id="aio-06-crossing-the-boundary"><p>Content from <a href="06-crossing-the-boundary.html">From Python to Rust and Back Again</a></p>
 <hr>
-<p>Last updated on 2026-09-25 |
+<p>Last updated on 2026-09-30 |
 
         <a href="https://github.com/ornl-training/python-to-rust-and-back-again/edit/main/episodes/06-crossing-the-boundary.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 30 minutes</p>
@@ -2417,6 +2492,9 @@ a Python exception:</p>
 <span id="cb1-9"><a href="#cb1-9" tabindex="-1" aria-label="code-block-1-9"></a>    )</span>
 <span id="cb1-10"><a href="#cb1-10" tabindex="-1" aria-label="code-block-1-10"></a><span class="op">}</span></span></code></pre>
 </div>
+<p>Reference implementation: <a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L509-522" class="external-link"><code>acorn-py</code>
+exception translation (lines 509–522)</a> and <a href="https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/validate/mod.rs#L258-290" class="external-link"><code>acorn-schema</code>
+formatter (lines 258–290)</a>.</p>
 <p>The public Python contract is now explicit:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2428,6 +2506,8 @@ a Python exception:</p>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1" aria-label="code-block-2-5"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>, match<span class="op">=</span><span class="st">"Unable to format"</span>):</span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1" aria-label="code-block-2-6"></a>        format_phone_number(<span class="st">"not a phone number"</span>)</span></code></pre>
 </div>
+<p><a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/tests/test_validate.py#L19-24" class="external-link">Reference
+test: successful and failing phone-number cases (lines 19–24)</a></p>
 <p>The schema function returns ACORN’s structured
 <code>ValidationError</code>; converting it to text uses its
 human-readable message while PyO3 supplies the Python exception type. Do
@@ -2595,6 +2675,8 @@ values, and exceptions users observe:</p>
 <span id="cb5-4"><a href="#cb5-4" tabindex="-1" aria-label="code-block-5-4"></a>    <span class="cf">assert</span> is_doi(<span class="st">"10.11578/dc.20250604.1"</span>)</span>
 <span id="cb5-5"><a href="#cb5-5" tabindex="-1" aria-label="code-block-5-5"></a>    <span class="cf">assert</span> <span class="kw">not</span> is_doi(<span class="st">"totally invalid string"</span>)</span></code></pre>
 </div>
+<p><a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/tests/test_validate.py#L83-91" class="external-link">Reference
+test: <code>acorn-py</code> DOI cases (lines 83–91)</a></p>
 <p>Run the Python-facing suite in both supported environments:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2609,6 +2691,9 @@ install:</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="ex">pixi</span> run <span class="at">-e</span> py313 wheel-smoke</span></code></pre>
 </div>
+<p><a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/pyproject.toml#L46-100" class="external-link">Reference
+configuration: test environments and clean-wheel smoke task (lines 46–49
+and 82–100)</a></p>
 <p>The smoke task builds the locked release wheel, installs it into a
 clean environment, imports <code>acorn</code>, and verifies that the
 installed distribution is <code>acorn-py</code> at the expected
@@ -2621,10 +2706,10 @@ version.</p>
 <div id="test-a-complete-round-trip" class="callout-inner">
 <h3 class="callout-title">Test a complete round trip</h3>
 <div class="callout-content">
-<p>Add Python tests for the successful and failing paths of
-<code>format_phone_number</code>. Then add a validator test that imports
-<code>is_orcid</code> from <code>acorn.schema.validate</code>. Which
-assertions protect the Rust behavior, and which protect the
+<p>How would you add Python tests for the successful and failing paths
+of <code>format_phone_number</code>. Then add a validator test that
+imports <code>is_orcid</code> from <code>acorn.schema.validate</code>.
+Which assertions protect the Rust behavior, and which protect the
 cross-language contract?</p>
 </div>
 </div>
@@ -2634,7 +2719,7 @@ cross-language contract?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The formatted value and validation booleans describe domain behavior.
 The import path, accepted Python argument types, <code>ValueError</code>
@@ -2673,7 +2758,7 @@ import can miss.</li>
 </div>
 </section></section><section id="aio-07-practical-guidance"><p>Content from <a href="07-practical-guidance.html">Practical Guidance and Q&amp;A</a></p>
 <hr>
-<p>Last updated on 2026-09-25 |
+<p>Last updated on 2026-09-30 |
 
         <a href="https://github.com/ornl-training/python-to-rust-and-back-again/edit/main/episodes/07-practical-guidance.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 20 minutes</p>
@@ -2964,6 +3049,9 @@ project, run:</p>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a><span class="fu">make</span> test</span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a><span class="fu">make</span> wheel-smoke</span></code></pre>
 </div>
+<p><a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/Makefile#L12-47" class="external-link">Reference
+implementation: <code>acorn-py</code> check, test, and wheel-smoke
+targets (lines 12–17 and 36–47)</a></p>
 </section><section><h2 class="section-heading" id="a-sensible-route-forward">A sensible route forward<a class="anchor" aria-label="anchor" href="#a-sensible-route-forward"></a>
 </h2>
 <hr class="half-width">
@@ -3124,8 +3212,8 @@ supports it.</li>
   "url": "https://ornl-training.github.io/python-to-rust-and-back-again/instructor/aio.html",
   "identifier": "https://ornl-training.github.io/python-to-rust-and-back-again/instructor/aio.html",
   "dateCreated": "2026-09-20",
-  "dateModified": "2026-09-29",
-  "datePublished": "2026-09-29"
+  "dateModified": "2026-09-30",
+  "datePublished": "2026-09-30"
 }
 
   </script><script>

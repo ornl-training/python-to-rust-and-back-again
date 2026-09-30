@@ -118,7 +118,7 @@
     <a id="search-button" class="btn btn-primary" href="../instructor/aio.html" role="button" aria-label="Search the All In One page">Search the All In One page</a>
   </div><!--/div.container-fluid -->
 </nav><aside class="col-md-12 lesson-progress"><div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100" aria-label="Lesson Progress">28%</div>
+    <div class="progress-bar incubator" role="progressbar" style="width: 29%" aria-valuenow="29" aria-valuemin="0" aria-valuemax="100" aria-label="Lesson Progress">29%</div>
   </div>
 </aside><div class="container">
       <div class="row">
@@ -332,7 +332,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Where the Analogy Ends</h1>
-        <p>Last updated on 2026-09-25 |
+        <p>Last updated on 2026-09-30 |
 
         <a href="https://github.com/ornl-training/python-to-rust-and-back-again/edit/main/episodes/03-where-the-analogy-ends.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -473,12 +473,17 @@ consistent Python-facing <code>Patent</code> object.</p>
 <span id="cb3-18"><a href="#cb3-18" tabindex="-1" aria-label="code-block-3-18"></a>    <span class="pp">assert_eq!</span>(patent<span class="op">.</span>identifier()<span class="op">,</span> <span class="st">"US 7654321 B2"</span>)<span class="op">;</span></span>
 <span id="cb3-19"><a href="#cb3-19" tabindex="-1" aria-label="code-block-3-19"></a><span class="op">}</span></span></code></pre>
 </div>
-<p>This is the schema crate’s real <code>Patent</code> enum rather than
-a workshop-only facsimile. Importing <code>PersistentIdentifier</code>
-brings its shared methods into scope; ACORN’s identifier types use that
-trait for behaviors such as <code>identifier()</code> and
-<code>schema_uri()</code>. The exhaustive <code>match</code> must be
-revisited if the schema adds another patent variant.</p>
+<p>Reference implementation: <a href="https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/pid/patent/mod.rs#L117-147" class="external-link"><code>Patent</code>
+enum (lines 117–147)</a>, <a href="https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/pid/mod.rs#L62-95" class="external-link"><code>PersistentIdentifier</code>
+trait (lines 62–95)</a>, and <a href="https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/pid/patent/mod.rs#L252-283" class="external-link"><code>Patent</code>
+trait implementation (lines 252–283)</a>.</p>
+<p>Importing <code>PersistentIdentifier</code> brings its shared methods
+into scope; ACORN’s identifier types use that trait for behaviors such
+as <code>identifier()</code> and <code>schema_uri()</code>. The
+exhaustive <code>match</code> must be revisited if the schema adds
+another patent variant. The completed binding performs the same
+exhaustive conversion in <a href="https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L299-353" class="external-link"><code>acorn-py</code>
+(lines 299–353)</a>.</p>
 </section><section><h2 class="section-heading" id="compile-time-guarantees-and-concurrency">Compile-time guarantees and concurrency<a class="anchor" aria-label="anchor" href="#compile-time-guarantees-and-concurrency"></a></h2>
 <hr class="half-width"><p>The same ownership rules apply across threads. A value cannot be
 mutated from multiple places unless its type provides safe
@@ -495,17 +500,18 @@ mutable state:</p>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a></span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a><span class="kw">fn</span> count_nonempty(left<span class="op">:</span> <span class="op">&amp;</span>[<span class="dt">String</span>]<span class="op">,</span> right<span class="op">:</span> <span class="op">&amp;</span>[<span class="dt">String</span>]) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span><span class="dt">usize</span><span class="op">,</span> <span class="op">&amp;</span><span class="ot">'static</span> <span class="dt">str</span><span class="op">&gt;</span> <span class="op">{</span></span>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1" aria-label="code-block-4-4"></a>    <span class="pp">thread::</span>scope(<span class="op">|</span>scope<span class="op">|</span> <span class="op">{</span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1" aria-label="code-block-4-5"></a>        <span class="kw">let</span> left_worker <span class="op">=</span></span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1" aria-label="code-block-4-6"></a>            scope<span class="op">.</span>spawn(<span class="op">||</span> left<span class="op">.</span>iter()<span class="op">.</span>filter(<span class="op">|</span>value<span class="op">|</span> <span class="op">!</span>value<span class="op">.</span>is_empty())<span class="op">.</span>count())<span class="op">;</span></span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1" aria-label="code-block-4-7"></a>        <span class="kw">let</span> right_worker <span class="op">=</span></span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1" aria-label="code-block-4-8"></a>            scope<span class="op">.</span>spawn(<span class="op">||</span> right<span class="op">.</span>iter()<span class="op">.</span>filter(<span class="op">|</span>value<span class="op">|</span> <span class="op">!</span>value<span class="op">.</span>is_empty())<span class="op">.</span>count())<span class="op">;</span></span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1" aria-label="code-block-4-9"></a></span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1" aria-label="code-block-4-10"></a>        <span class="cf">match</span> (left_worker<span class="op">.</span>join()<span class="op">,</span> right_worker<span class="op">.</span>join()) <span class="op">{</span></span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1" aria-label="code-block-4-11"></a>            <span class="op">|</span> (<span class="cn">Ok</span>(left_count)<span class="op">,</span> <span class="cn">Ok</span>(right_count)) <span class="op">=&gt;</span> <span class="cn">Ok</span>(left_count <span class="op">+</span> right_count)<span class="op">,</span></span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1" aria-label="code-block-4-12"></a>            <span class="op">|</span> _ <span class="op">=&gt;</span> <span class="cn">Err</span>(<span class="st">"a counting worker panicked"</span>)<span class="op">,</span></span>
-<span id="cb4-13"><a href="#cb4-13" tabindex="-1" aria-label="code-block-4-13"></a>        <span class="op">}</span></span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1" aria-label="code-block-4-14"></a>    <span class="op">}</span>)</span>
-<span id="cb4-15"><a href="#cb4-15" tabindex="-1" aria-label="code-block-4-15"></a><span class="op">}</span></span></code></pre>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1" aria-label="code-block-4-5"></a>        <span class="kw">let</span> left_worker <span class="op">=</span> scope<span class="op">.</span>spawn(<span class="op">||</span> <span class="op">{</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1" aria-label="code-block-4-6"></a>            left<span class="op">.</span>iter()<span class="op">.</span>filter(<span class="op">|</span>value<span class="op">|</span> <span class="op">!</span>value<span class="op">.</span>is_empty())<span class="op">.</span>count()</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1" aria-label="code-block-4-7"></a>        <span class="op">}</span>)<span class="op">;</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1" aria-label="code-block-4-8"></a>        <span class="kw">let</span> right_worker <span class="op">=</span> scope<span class="op">.</span>spawn(<span class="op">||</span> <span class="op">{</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1" aria-label="code-block-4-9"></a>            right<span class="op">.</span>iter()<span class="op">.</span>filter(<span class="op">|</span>value<span class="op">|</span> <span class="op">!</span>value<span class="op">.</span>is_empty())<span class="op">.</span>count()</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1" aria-label="code-block-4-10"></a>        <span class="op">}</span>)<span class="op">;</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1" aria-label="code-block-4-11"></a>        <span class="cf">match</span> (left_worker<span class="op">.</span>join()<span class="op">,</span> right_worker<span class="op">.</span>join()) <span class="op">{</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1" aria-label="code-block-4-12"></a>            <span class="op">|</span> (<span class="cn">Ok</span>(left_count)<span class="op">,</span> <span class="cn">Ok</span>(right_count)) <span class="op">=&gt;</span> <span class="cn">Ok</span>(left_count <span class="op">+</span> right_count)<span class="op">,</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1" aria-label="code-block-4-13"></a>            <span class="op">|</span> _ <span class="op">=&gt;</span> <span class="cn">Err</span>(<span class="st">"a counting worker panicked"</span>)<span class="op">,</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1" aria-label="code-block-4-14"></a>        <span class="op">}</span></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1" aria-label="code-block-4-15"></a>    <span class="op">}</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1" aria-label="code-block-4-16"></a><span class="op">}</span></span></code></pre>
 </div>
 <p>The slices are borrowed, not copied. Returning partial counts also
 avoids a mutex. Ownership rules prevent either worker from outliving the
@@ -526,7 +532,8 @@ rules out invalid memory relationships while you test the idea.</td>
 prototyping.”</td>
 <td align="left">They can interrupt a first draft, so begin with owned
 values and use a temporary clone when that keeps the experiment moving.
-Revisit the ownership once the shape is clear.</td>
+Revisit the ownership once the shape is clear. e.g., Use
+<code>value.clone()</code> when iterating over borrowed data.</td>
 </tr><tr><td align="left">“You have to get all the details right from the
 beginning.”</td>
 <td align="left">Type inference, concrete types, and
@@ -535,9 +542,9 @@ unfinished path works.</td>
 </tr><tr><td align="left">“Rust always requires you to handle errors.”</td>
 <td align="left">Rust makes recoverable failure visible with
 <code>Result</code>, but a prototype can deliberately stop with
-<code>unwrap()</code>, <code>todo!()</code>, or
-<code>unreachable!()</code>. Production code still needs an intentional
-policy for user-triggerable failures.</td>
+<code>unwrap()</code>, <code>todo!()</code>,
+<code>unreachable!()</code>, or <code>?</code>. Production code still
+needs an intentional policy for user-triggerable failures.</td>
 </tr></tbody></table><p>The prototype’s job is to answer a question. Rust makes many
 shortcuts visible, which gives us a practical list to revisit before
 shipping.</p>
@@ -577,8 +584,9 @@ reference would point to freed memory. Return an owned
 <h3 class="code-label">RUST<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode rust" tabindex="0"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="kw">fn</span> first_word() <span class="op">-&gt;</span> <span class="dt">String</span> <span class="op">{</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a>    <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"hello"</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1" aria-label="code-block-6-3"></a><span class="op">}</span></span></code></pre>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a>    <span class="kw">let</span> message <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"hello from Rust"</span>)<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1" aria-label="code-block-6-3"></a>    message[<span class="op">..</span><span class="dv">5</span>]<span class="op">.</span>to_owned()</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1" aria-label="code-block-6-4"></a><span class="op">}</span></span></code></pre>
 </div>
 <p>Alternatively, accept an input string and return a slice borrowed
 from that input.</p>
@@ -667,8 +675,8 @@ visible and are reviewed before production.</li>
   "url": "https://ornl-training.github.io/python-to-rust-and-back-again/instructor/03-where-the-analogy-ends.html",
   "identifier": "https://ornl-training.github.io/python-to-rust-and-back-again/instructor/03-where-the-analogy-ends.html",
   "dateCreated": "2026-09-20",
-  "dateModified": "2026-09-25",
-  "datePublished": "2026-09-29"
+  "dateModified": "2026-09-30",
+  "datePublished": "2026-09-30"
 }
 
   </script><script>
