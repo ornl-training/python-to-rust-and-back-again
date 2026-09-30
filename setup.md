@@ -146,8 +146,8 @@ From the root of the cloned `acorn-py` repository, install both supported test
 environments:
 
 ```console
-pixi install --locked -e py310
-pixi install --locked -e py313
+pixi install --locked -e py310 --tls-root-certs=system
+pixi install --locked -e py313 --tls-root-certs=system
 ```
 
 These environments are declared in `pyproject.toml`. At the time this lesson

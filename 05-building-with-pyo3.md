@@ -75,7 +75,9 @@ compatible CPython minor versions.
 
 `Cargo.toml` pins `acorn-lib` and `acorn-schema` to one immutable public Git
 revision. No local ACORN checkout is needed. Changing that revision requires a
-dependency review and falls outside the workshop.
+dependency review and falls outside the workshop. See the completed project's
+[`pyproject.toml` build configuration (lines 30–39)](https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/pyproject.toml#L30-39)
+and [`Cargo.toml` dependency pins (lines 13–19)](https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/Cargo.toml#L13-19).
 
 ## Expose the first validator
 
@@ -106,6 +108,10 @@ fn acorn_py(module: &Bound<'_, PyModule>) -> PyResult<()> {
     Ok(())
 }
 ```
+
+Reference implementation: [`acorn-py` module initializer (lines 42–85)](https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L42-85),
+[`is_doi` binding (lines 558–573)](https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L558-573),
+and [the canonical ACORN DOI rule (lines 218–221)](https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/validation/mod.rs#L218-221).
 
 `#[pyfunction]` makes the Rust function callable by Python.
 `wrap_pyfunction!` adds it to the `validate` module, and the `sys.modules`
@@ -176,6 +182,10 @@ impl Doi {
 }
 ```
 
+The completed project uses a generated wrapper rather than this teaching-sized
+class; compare its [`PyDOI` definition (lines 97–104)](https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L97-104)
+and [`DOI` wrapper implementation (lines 208–221)](https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L208-221).
+
 Register it under a sibling `pid` module using the same parent-child and
 `sys.modules` pattern as `validate`. Create and attach `pid` before attaching
 `schema` to the top-level module:
@@ -196,6 +206,8 @@ modules.set_item("acorn.schema.validate", validate)?;
 modules.set_item("acorn.schema.pid", pid)?;
 ```
 
+[Reference implementation: nested-module registration (lines 77–84)](https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L77-84)
+
 `frozen` prevents Python callers from replacing Rust-managed fields. The
 constructor turns invalid input into `ValueError`, so a successfully created
 `Doi` always satisfies its invariant. Prefer a function when no durable state
@@ -205,7 +217,7 @@ or behavior justifies a class.
 
 ## Bind a second validator
 
-Add an `is_orcid(value: &str) -> bool` function using ACORN's canonical ORCID
+How would you add an `is_orcid(value: &str) -> bool` function using ACORN's canonical ORCiD
 rule. Register it beside `is_doi`, rebuild, and verify these calls:
 
 ```python
@@ -214,6 +226,8 @@ from acorn.schema.validate import is_orcid
 assert is_orcid("https://orcid.org/0000-0002-2057-9115")
 assert not is_orcid("abc-0000-0000-0000")
 ```
+
+[Reference test: `acorn-py` ORCID cases (lines 94–99)](https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/tests/test_validate.py#L94-99)
 
 :::::::::::::::::::::::: solution
 
@@ -226,11 +240,16 @@ fn is_orcid(value: &str) -> bool {
 }
 ```
 
+Reference implementation: [`is_orcid` binding (lines 587–600)](https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L587-600)
+and [the canonical ACORN ORCID rule (lines 234–237)](https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/validation/mod.rs#L234-237).
+
 Register it inside `acorn_py`:
 
 ```rust
 validate.add_function(wrap_pyfunction!(is_orcid, &validate)?)?;
 ```
+
+[Reference implementation: validator registration (lines 59–76)](https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L59-76)
 
 Then run `pixi run -e py313 develop` before executing the Python assertions.
 

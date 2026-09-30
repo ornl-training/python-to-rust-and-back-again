@@ -96,14 +96,18 @@ body:not(:has(#aio-01-there-and-back-again))
 
 ## Two languages, two jobs
 
-Python optimizes for developer momentum: expressive code, a rich ecosystem, and
-a fast path from experiment to working software. Rust optimizes for control and
-confidence: predictable performance, memory safety without a garbage collector,
+Python is very accepting and will run just about anything you pass it. It offers expressive code, a rich ecosystem, and
+a fast path from experiment to working software. Rust optimizes for replicability and reproducibility: predictable performance, portable deployments, memory safety without a garbage collector,
 and errors caught before deployment.
+
+::: instructor
+Reproduction verifies that the original result can be regenerated;
+replication tests whether the result survives a new, independent attempt.
+:::
 
 Ask where each language creates the most value in the project.
 
-| Python is often strongest at | Rust is often strongest at |
+| Python is often used for | Rust could be a better fit |
 |:--|:--|
 | orchestration and application logic | tight compute-heavy loops |
 | exploration and rapid iteration | predictable memory and latency |
@@ -133,8 +137,7 @@ quietly becoming an open-ended rewrite.
 | Cost budget | What added complexity is acceptable? | Support the required wheels without making every Python maintainer debug Rust. |
 
 Measure through the interface users will call. A Rust function may be fast in
-isolation while conversion, repeated boundary crossings, or wheel startup
-dominates the installed package. The experiment may also succeed without a
+isolation, but might be slow because of conversion, repeated boundary crossings, or wheel startup. The experiment may also succeed without a
 speedup: reusing a trusted crate or making memory use more predictable can be a
 valid result when that was the stated target.
 
@@ -148,6 +151,8 @@ from acorn.schema.validate import is_doi
 
 assert is_doi("10.11578/dc.20250604.1")
 ```
+
+[Reference implementation: `is_doi` in `acorn-py` (lines 558–573)](https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L558-573)
 
 Behind that API, PyO3 exposes validation and schema behavior from the Rust
 crates `acorn-lib` and `acorn-schema`. This is a credible incremental boundary:
