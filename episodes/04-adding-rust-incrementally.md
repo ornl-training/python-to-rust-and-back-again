@@ -1,7 +1,7 @@
 ---
 title: "Adding Rust to Python Incrementally"
-teaching: 15
-exercises: 10
+teaching: 10
+exercises: 5
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
@@ -45,6 +45,8 @@ assert is_doi("10.11578/dc.20250604.1")
 assert not is_doi("not an identifier")
 ```
 
+[Reference implementation: Python-facing `is_doi` binding (lines 558–573)](https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L558-573)
+
 `acorn-py` is the distribution name shown by package installers, while `acorn`
 is the import name and `acorn.schema.validate` is a nested module registered by
 the extension. Treat all three names as part of the packaging contract. Callers
@@ -79,6 +81,8 @@ def test_is_doi_contract(value: str, expected: bool):
     assert is_doi(value) is expected
 ```
 
+[Reference test: `acorn-py` DOI contract cases (lines 83–91)](https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/tests/test_validate.py#L83-91)
+
 This test intentionally imports the public path rather than a private helper.
 It protects the name, accepted Python value, return type, and domain behavior in
 one place. Add edge cases from production data before changing the
@@ -107,6 +111,8 @@ fn are_dois(values: &[String]) -> Vec<bool> {
         .collect()
 }
 ```
+
+[Associated ACORN source: the scalar DOI rule used by the batch example (lines 218–221)](https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/validation/mod.rs#L218-221)
 
 Do not add batching merely because it sounds faster. Benchmark the scalar and
 batch interfaces with realistic inputs, including the conversion performed by

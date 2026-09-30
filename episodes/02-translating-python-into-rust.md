@@ -62,6 +62,8 @@ fn count_valid_dois(values: &[String]) -> usize {
 }
 ```
 
+[Associated ACORN source: the canonical DOI rule (lines 218–221)](https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/validation/mod.rs#L218-221)
+
 The Rust function accepts a borrowed slice, so callers can provide a view of a
 vector without transferring ownership. Its return type records that a count is
 never negative. ACORN groups scalar validators under `validation::rules`; each
@@ -215,6 +217,18 @@ arguments. John McCarthy's [original Lisp paper][lisp-paper] used `LAMBDA` in
 1960, helping carry the term from mathematical logic into programming-language
 vocabulary.
 
+$$
+{\Large \widehat{y}}
+\quad\longrightarrow\quad
+{\Large \wedge y}
+\quad\longrightarrow\quad
+{\Large \lambda y}
+$$
+
+- $\hat{y}$: Original notation used by A. Church
+- $\land y$: Became this in typed manuscript
+- $\lambda y$: Used by typesetter
+
 Python keeps `lambda` as the keyword for an anonymous function expression.
 Rust uses the term *closure*, which emphasizes that the callable value may
 capture part of its surrounding environment. A lambda or closure can still be
@@ -351,8 +365,11 @@ fn test_is_doi() {
 }
 ```
 
+[ACORN source: DOI validator test (lines 206–219)](https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/validate/tests.rs#L206-219)
+
 In the crate itself, a domain module includes its adjacent tests with
-`#[cfg(test)] mod tests;`, so test-only code is absent from normal builds.
+[`#[cfg(test)] mod tests;`](https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/validation/mod.rs#L859-860),
+so test-only code is absent from normal builds.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 

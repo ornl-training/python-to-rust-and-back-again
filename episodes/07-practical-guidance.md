@@ -186,6 +186,8 @@ make test
 make wheel-smoke
 ```
 
+[Reference implementation: `acorn-py` check, test, and wheel-smoke targets (lines 12–17 and 36–47)](https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/Makefile#L12-47)
+
 ## A sensible route forward
 
 1. Profile a production-shaped workload.

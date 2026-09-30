@@ -70,6 +70,9 @@ fn format_phone_number(value: &str) -> PyResult<String> {
 }
 ```
 
+Reference implementation: [`acorn-py` exception translation (lines 509–522)](https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L509-522)
+and [`acorn-schema` formatter (lines 258–290)](https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/validate/mod.rs#L258-290).
+
 The public Python contract is now explicit:
 
 ```python
@@ -80,6 +83,8 @@ def test_invalid_phone_number():
     with pytest.raises(ValueError, match="Unable to format"):
         format_phone_number("not a phone number")
 ```
+
+[Reference test: successful and failing phone-number cases (lines 19–24)](https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/tests/test_validate.py#L19-24)
 
 The schema function returns ACORN's structured `ValidationError`; converting
 it to text uses its human-readable message while PyO3 supplies the Python
@@ -185,6 +190,8 @@ def test_is_doi():
     assert not is_doi("totally invalid string")
 ```
 
+[Reference test: `acorn-py` DOI cases (lines 83–91)](https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/tests/test_validate.py#L83-91)
+
 Run the Python-facing suite in both supported environments:
 
 ```bash
@@ -198,6 +205,8 @@ Test the distributable artifact as well as the development install:
 pixi run -e py313 wheel-smoke
 ```
 
+[Reference configuration: test environments and clean-wheel smoke task (lines 46–49 and 82–100)](https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/pyproject.toml#L46-100)
+
 The smoke task builds the locked release wheel, installs it into a clean
 environment, imports `acorn`, and verifies that the installed distribution is
 `acorn-py` at the expected version.
@@ -206,7 +215,7 @@ environment, imports `acorn`, and verifies that the installed distribution is
 
 ## Test a complete round trip
 
-Add Python tests for the successful and failing paths of
+How would you add Python tests for the successful and failing paths of
 `format_phone_number`. Then add a validator test that imports `is_orcid` from
 `acorn.schema.validate`. Which assertions protect the Rust behavior, and which
 protect the cross-language contract?

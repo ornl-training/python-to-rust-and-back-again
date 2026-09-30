@@ -107,11 +107,15 @@ fn main() {
 }
 ```
 
-This is the schema crate's real `Patent` enum rather than a workshop-only
-facsimile. Importing `PersistentIdentifier` brings its shared methods into
+Reference implementation: [`Patent` enum (lines 117–147)](https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/pid/patent/mod.rs#L117-147),
+[`PersistentIdentifier` trait (lines 62–95)](https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/pid/mod.rs#L62-95),
+and [`Patent` trait implementation (lines 252–283)](https://code.ornl.gov/research-enablement/acorn/-/blob/a3709d30027e24b4d75f9cd931b924945dddb42b/crates/acorn-schema/src/pid/patent/mod.rs#L252-283).
+
+Importing `PersistentIdentifier` brings its shared methods into
 scope; ACORN's identifier types use that trait for behaviors such as
 `identifier()` and `schema_uri()`. The exhaustive `match` must be revisited if
-the schema adds another patent variant.
+the schema adds another patent variant. The completed binding performs the
+same exhaustive conversion in [`acorn-py` (lines 299–353)](https://code.ornl.gov/research-enablement/acorn-py/-/blob/c796f8b0e967287916f17d900aab41b2230d06d1/src/lib.rs#L299-353).
 
 ## Compile-time guarantees and concurrency
 
@@ -128,11 +132,12 @@ use std::thread;
 
 fn count_nonempty(left: &[String], right: &[String]) -> Result<usize, &'static str> {
     thread::scope(|scope| {
-        let left_worker =
-            scope.spawn(|| left.iter().filter(|value| !value.is_empty()).count());
-        let right_worker =
-            scope.spawn(|| right.iter().filter(|value| !value.is_empty()).count());
-
+        let left_worker = scope.spawn(|| {
+            left.iter().filter(|value| !value.is_empty()).count()
+        });
+        let right_worker = scope.spawn(|| {
+            right.iter().filter(|value| !value.is_empty()).count()
+        });
         match (left_worker.join(), right_worker.join()) {
             | (Ok(left_count), Ok(right_count)) => Ok(left_count + right_count),
             | _ => Err("a counting worker panicked"),
@@ -154,9 +159,9 @@ usually come from treating every early decision as permanent:
 | Misbelief | A more useful working assumption |
 |:--|:--|
 | “Memory safety and prototyping just don’t go together.” | Compiler feedback can be part of the experiment. It rules out invalid memory relationships while you test the idea. |
-| “Ownership and borrowing take the fun out of prototyping.” | They can interrupt a first draft, so begin with owned values and use a temporary clone when that keeps the experiment moving. Revisit the ownership once the shape is clear. |
+| “Ownership and borrowing take the fun out of prototyping.” | They can interrupt a first draft, so begin with owned values and use a temporary clone when that keeps the experiment moving. Revisit the ownership once the shape is clear. e.g., Use `value.clone()` when iterating over borrowed data. |
 | “You have to get all the details right from the beginning.” | Type inference, concrete types, and `todo!()` let you postpone decisions without pretending the unfinished path works. |
-| “Rust always requires you to handle errors.” | Rust makes recoverable failure visible with `Result`, but a prototype can deliberately stop with `unwrap()`, `todo!()`, or `unreachable!()`. Production code still needs an intentional policy for user-triggerable failures. |
+| “Rust always requires you to handle errors.” | Rust makes recoverable failure visible with `Result`, but a prototype can deliberately stop with `unwrap()`, `todo!()`, `unreachable!()`, or `?`. Production code still needs an intentional policy for user-triggerable failures. |
 
 The prototype's job is to answer a question. Rust makes many shortcuts visible,
 which gives us a practical list to revisit before shipping.
@@ -183,7 +188,8 @@ freed memory. Return an owned `String` instead:
 
 ```rust
 fn first_word() -> String {
-    String::from("hello")
+    let message = String::from("hello from Rust");
+    message[..5].to_owned()
 }
 ```
 
